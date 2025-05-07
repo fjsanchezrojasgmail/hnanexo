@@ -1,0 +1,20 @@
+{
+  "urlHnConfiguration": "/hnanexo",
+  "urlHnreq" : "/hnanexo/api/hdr",
+  "criteria": [],
+  "pagination": 20,
+  "paginationMax": 100,
+  "paginationTable": 50,
+  "patientsSearchMax": 10,
+  "paginationVisado": 20,
+  "urlManual": "./assets/api/manual/PARECYL_MU_Prescripción.pdf",
+  "urlManualAdmin": "./assets/api/manual/PARECYL_MU_Administración.pdf",
+  "urlMirthFindPatient": "/hnanexo/api/mirth/findPatient/",
+  "daysUpdateResourcesFhir": 180,
+  "consultCitizenData": true,
+  "tamMaxUploadIMG_MB": 1.5,
+  "encryptUrl": false,
+  "delayCatalogSearch": 300,
+  "productCodeSRA000J": false,
+  "urlOntology": "/hnanexo/api/cat/fhir"
+}

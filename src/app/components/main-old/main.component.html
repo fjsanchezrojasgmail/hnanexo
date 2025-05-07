@@ -1,0 +1,49 @@
+<!-- application loader -->
+<div id="loader" style="z-index: 10000;">
+	<div id="loader-panel">
+		<div class="loading-img"></div>
+		<label>{{'label.loading' | translate }}</label>
+	</div>
+</div>
+
+
+<!-- application body -->
+<div id="app-body" [hidden]="isloaded() != true" class="hn-body">
+	<!--Comprobamos si mostramos hn-messages-->
+	<hnanexo-component-messages [messages]="'messageSuccess' | translate"  [timeShow]="messageSuccess?.text?.length > 125 ? 8 : 5" severity="success"></hnanexo-component-messages>
+	<hnanexo-component-messages [messages]="'messageError' | translate" [timeShow]="messageError?.text?.length > 125 ? 8 : 5" severity="error"></hnanexo-component-messages>
+	<hnanexo-component-messages [messages]="'messageInfo' | translate" [timeShow]="messageInfo?.text?.length > 125 ? 8 : 5" severity="info"></hnanexo-component-messages>
+	<hnanexo-component-messages [messages]="'messageWarning' | translate" [timeShow]="messageWarning?.text?.length > 125 ? 8 : 5" severity="warning"></hnanexo-component-messages>
+
+	<!-- CABECERA -->
+	<hnanexo-component-header
+	*ngIf="!isEmbedded()"
+	title1="{{'label.title.hn' | translate}}"
+	title2="{{'label.title.module' | translate}}"
+	[name]="loggedUser?.userName!"
+	[hnrole]="loggedUser?.hnrole?.display"
+	[center]="loggedUser?.center?.display"
+	[unit]="loggedUser?.unit?.display"
+	[cias]="loggedUser?.identificador "
+	[num_colegiado]="loggedUser?.num_colegiado"
+	[user]="loggedUser"
+	[existePaciente]="existePaciente"
+	tooltip1="{{'tooltip.header.open' | translate}}"
+	tooltip2="{{'tooltip.header.close' | translate}}"
+  tooltip3="{{'tooltip.header.session' | translate}}"
+	[urlManual]='urlManual'
+	[urlManualAdmin]='urlManualAdmin'
+	(logout)="logout()">
+	</hnanexo-component-header>
+
+	<!-- APP CONTENT -->
+	<div *ngIf="showContent" class="container-fluid">
+		<router-outlet></router-outlet>
+	</div>
+
+	<!-- Dialog component (informacion usuario debido a ws astare) -->
+	<astare-notice *ngIf="showAstareNotice"
+		[textNoticeAstare]="textNoticeAstare">
+	</astare-notice>
+</div>
+

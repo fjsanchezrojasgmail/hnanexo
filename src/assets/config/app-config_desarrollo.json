@@ -1,0 +1,19 @@
+{
+  "urlHnConfiguration": "http://localhost:8085/hnanexo",
+  "urlHnreq" : "http://localhost:8085/hnanexo/api/hdr",
+  "criteria": [],
+  "pagination": 2,
+  "paginationMax": 100,
+  "paginationTable": 50,
+  "patientsSearchMax": 10,
+  "urlManual": "./assets/api/manual/PARECYL_MU_Prescripción.pdf",
+  "urlManualAdmin": "./assets/api/manual/PARECYL_MU_Administración.pdf",
+  "urlMirthFindPatient": "http://ortosacyl.indra.es/hnanexo/api/mirth/findPatient/",
+  "daysUpdateResourcesFhir": 180,
+  "consultCitizenData": true,
+  "tamMaxUploadIMG_MB": 1.5,
+  "encryptUrl": false,
+  "delayCatalogSearch": 300,
+  "productCodeSRA000J": false,
+  "urlOntology": "http://ortosacyl.indra.es/hnanexo/api/cat/fhir"
+}

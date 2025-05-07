@@ -1,0 +1,12 @@
+
+astare-notice .imageClose {
+    text-align:center;
+    padding-top: 35px;
+}
+
+astare-notice .dialogInformation {
+    width: 500px;
+    height: 100px;
+    overflow-x:hidden;
+    overflow-y:hidden;
+}

@@ -1,0 +1,51 @@
+<div *ngIf="!isEmbedded" [ngClass]="classHeaderComponent">
+  <!-- SECCION IZQUIERDA, LOGOTIPO SERMAS -->
+  <div id="left" class="hnanexo-section-left-header" [ngClass]="classSectionLeftHeader">
+    <img src="assets/img/logo_sacyl_header.png" class="img-logo">
+  </div>
+  <!-- SECCION DERECHA, TITULO APP Y DATOS DE USUARIO -->
+  <div id="right" class="hnanexo-section-right-header" [ngClass]="classSectionLeftHeader">
+    <div class="hn-header">
+      <!-- TITULO APP -->
+      <div class="hn-header-title">
+        <span class="hn-name-product" [ngClass]="classColorText">{{title1}}</span>
+        <span class="hnanexo-name-app" [ngClass]="classColorText" [title]="infoOpened? componentMessages['label.tooltip.title.app'] : ''">{{title2}}</span>
+      </div>
+      <!-- BOTÓN PARA VER MANUAL -->
+      <div class='header-item-manual hn-border-left hn-border-right' title="{{componentMessages['label.show.manual']}}" (click)="openManual()">
+          <i class="fa fa-question-circle white-color" aria-hidden="true"></i>
+      </div>
+      <!-- DATOS USUARIO -->
+      <div class="pull-right hn-header-login hn-header-login-user" id="loginInfo" tooltipStyleClass="hn-fixPosition"
+        tooltipPosition="bottom">
+        <!-- Icono más info  -->
+        <div class="icon-more-info" *ngIf="prescriptor">
+          <i class="ui-hn-icon icon-info" (click)="openInfo()" [title]="infoOpened ? tooltip2 : tooltip1"></i>
+        </div>
+        <!-- Datos todos perfiles -->
+        <div class="user-general-data">
+          <p class="hn-user-info">
+            <span [ngClass]="classNameUserText" [title]="nameLengthCheck(name)">{{ name | truncateText: limitCharacter}}</span>
+          </p>
+          <p class="hn-access-info">
+            <span [ngClass]="classDataUserText">{{perfil}}</span>
+            <span [ngClass]="classDataUserText" [title]="center">{{center}}</span>
+            <span [ngClass]="classDataUserText" *ngIf="prescriptor">{{unit}}</span> <!-- En este caso, solo médico prescriptor -->
+          </p>
+        </div>
+        <!-- Datos perfil médico preescriptor) -->
+        <div [ngClass]="onClick && prescriptor? 'user-extra-data-opened' : 'user-extra-data-closed'">
+          <p>
+            <span *ngIf="infoOpened && prescriptor" [ngClass]="classDataUserText" style="line-height: 20px">{{'CPF: ' + cias}}</span>
+          </p>
+          <p>
+            <span *ngIf="infoOpened && prescriptor" [ngClass]="classDataUserText">{{'nº col: ' + num_colegiado}}</span>
+          </p>
+        </div>
+      </div>
+      <div class="hn-header-login hn-header-login-action">
+        <a (click)="clickLogout()" class="hn-header-action ui-hn-icon icon-power-off" [ngClass]="classHeaderAction" [title]="tooltip3"></a>
+      </div>
+    </div>
+  </div>
+</div>

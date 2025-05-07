@@ -1,0 +1,74 @@
+{
+    "code": {
+        "render": true,
+        "defaultValue": null
+    },
+    "status": {
+        "render": false,
+        "defaultValue": null
+    },
+    "name": {
+        "render": false,
+        "defaultValue": null
+    },
+    "given": {
+        "render": true,
+        "defaultValue": null
+    },
+    "family": {
+        "render": true,
+        "defaultValue": null
+    },
+    "birthdate": {
+        "render": true,
+        "defaultValue": null
+    },
+    "from_age": {
+        "render": true,
+        "defaultValue": null
+    },
+    "to_age": {
+        "render": true,
+        "defaultValue": null
+    },
+    "document_type": {
+        "render": true,
+        "defaultValue": null
+    },
+    "document_value": {
+        "render": true,
+        "defaultValue": null
+    },
+    "contact_type": {
+        "render": false,
+        "defaultValue": null
+    },
+    "contact_value": {
+        "render": false,
+        "defaultValue": null
+    },
+    "coverage_type": {
+        "render": true,
+        "defaultValue": null
+    },
+    "coverage_value": {
+        "render": true,
+        "defaultValue": null
+    },
+    "gender": {
+        "render": false,
+        "defaultValue": null
+    },
+    "cipa": {
+        "render": true,
+        "defaultValue": null,
+        "system": "CIPAUTONOMICO"
+    },
+    "dniNie": {
+        "label": "mpi.filter.dniNie",
+        "render": true,
+        "defaultValue": null,
+        "identifier": "NNESP",
+        "system": "NNESP"
+    }
+}

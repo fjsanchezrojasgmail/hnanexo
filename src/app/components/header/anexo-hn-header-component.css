@@ -1,0 +1,238 @@
+anexo-hn-header-component > div {
+    display: flex;
+    height: 44px;
+}
+
+anexo-hn-header-component .hnanexo-section-left-header {
+    width: 290px;
+    background-color: #519CE5;
+}
+anexo-hn-header-component .img-logo {
+  width: 60px;
+  margin-left: 10px;
+  margin-top: 5px;;
+}
+/* Seccion izquierda INFO USUARIO Y TITULO APP */
+anexo-hn-header-component .hnanexo-section-right-header {
+    flex: 1;
+    cursor: default;
+    -webkit-box-flex: 1;
+    background-color: #519CE5;
+}
+
+anexo-hn-header-component .hn-header {
+    display: flex;
+    height: 100%;
+}
+
+/** TITULO APP */
+anexo-hn-header-component .hn-header .hn-header-title {
+    float: left;
+    -webkit-box-flex: 1;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+    align-self: center;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.hn-margin-left-default, anexo-hn-header-component .hn-header .hn-header-title {
+    margin-left: 20px;
+    display: flex;
+}
+
+anexo-hn-header-component .hn-header .hn-header-title span {
+    /* font-family: Neo Sans Medium; */
+    font-family: "OpenSans";
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-right: 3px;
+    align-self: baseline;
+}
+anexo-hn-header-component .hn-header .hn-header-title span.hnanexo-name-app {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* anexo-hn-header-component .hn-header .hn-header-title span.hn-name-product {
+    
+} */
+anexo-hn-header-component .hn-header .hn-header-title.hn-header-title-color-default span {
+    color: #999;
+}
+
+anexo-hn-header-component .hn-header .hn-header-title span.hn-name-product {
+    /* font-family: Neo Sans Light; */
+    font-family: "OpenSans Light";
+}
+
+/** ENLACE MANUAL */
+
+anexo-hn-header-component .header-item-manual{
+  width: 50px;
+  height: 40px;
+  text-align: center;
+  padding-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+anexo-hn-header-component .header-item-manual i.fa.fa-question-circle{
+  margin-top: 2px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+anexo-hn-header-component .header-item-manual:hover{
+  background-color: #1455C7;
+}
+
+anexo-hn-header-component .header-item-manual:hover i.fa.fa-question-circle{
+  color: white;
+}
+
+/** INFO USUARIO */
+    /* Icono mas informacion */
+anexo-hn-header-component .icon-more-info{
+    float: left;
+    height: 40px;
+    padding-top: 7px;
+    padding-right: 7px;
+}
+anexo-hn-header-component .icon-more-info .ui-hn-icon.icon-info{
+    color: white;
+    cursor: pointer;
+}
+anexo-hn-header-component .icon-more-info .ui-hn-icon.icon-info:hover{
+    color: #1455C7;
+}
+
+anexo-hn-header-component .user-general-data {
+    float: left;
+    padding-right: 10px;
+}
+
+anexo-hn-header-component .user-general-data p {
+    margin: 0;
+}
+
+anexo-hn-header-component .user-extra-data-opened {
+    width: 130px;
+    float: right;
+    transition: width 0.3s;
+    white-space: nowrap;
+}
+
+anexo-hn-header-component .user-extra-data-closed {
+    width: 0px;
+    float: right;
+    transition: width 0.3s;
+}
+
+anexo-hn-header-component .user-extra-data-opened p, anexo-hn-header-component .user-extra-data-closed p {
+    margin: 0;
+}
+
+anexo-hn-header-component .hn-header .hn-header-login-user {
+    vertical-align: top;
+    padding-top: 3px;
+    width: auto;
+}
+
+anexo-hn-header-component .hn-header-login-user .hn-user-info,
+anexo-hn-header-component .hn-header-login-user .hn-access-info {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+
+anexo-hn-header-component .hn-header-login-user .hn-access-info > span:before {
+    content: ' - ';
+}
+
+anexo-hn-header-component .hn-header-login-user .hn-access-info > span:empty:before,
+anexo-hn-header-component .hn-header-login-user .hn-access-info > span:first-of-type:before,
+anexo-hn-header-component .hn-header-login-user .hn-access-info > span:first-of-type + anexo-hn-header-component .hn-header-login-user .hn-access-info > span:empty:before,
+anexo-hn-header-component .hn-header-login-user .hn-access-info > span:empty + anexo-hn-header-component .hn-header-login-user .hn-access-info > span:not(:last-of-type):before,
+anexo-hn-header-component .hn-header-login-user .hn-access-info > span:empty + anexo-hn-header-component .hn-header-login-user .hn-access-info > span:empty:before {
+    content: '';
+}
+
+/** BOTON LOGGOUT */
+anexo-hn-header-component .hn-header .hn-header-login-action,
+anexo-hn-header-component .hn-header .hn-header-help-action {
+    vertical-align: top;
+    width: 40px;
+    padding-top: 12px;
+    text-align: center;
+    color: rgba(99, 99, 99, 0.6);
+    padding-right: 20px;
+    margin-left: 5px;
+}
+
+anexo-hn-header-component .hn-header .hn-header-login-action .hn-header-action,
+anexo-hn-header-component .hn-header .hn-header-help-action .hn-header-action {
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+anexo-hn-header-component .hn-header-action.hn-header-action-color {
+    color: white;
+}
+
+anexo-hn-header-component .hn-header-action.hn-header-action-color:hover {
+    color: #1455C7;
+}
+
+anexo-hn-header-component .hn-header-login.hn-header-login-action {
+    background-color: #519CE5;
+}
+
+
+/** Estilos de HNStyle **/
+.sea-sunset-dark-background {
+    background-color: #343648;
+}
+
+.white-color {
+    color: white;
+}
+
+.greyDark-color-op5 {
+    color: rgba(153, 153, 153, .5);
+}
+
+.greyDark-color.name-user, .greyDark-color.data-user {
+    color: #999999;
+}
+
+.greyDark-color.name-user {
+    /* font-family: Arial; */
+    font-family: OpenSans;
+    font-size: 14px;
+    /**Limitamos el número de pixeles que mostrara*/
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+    width: 300px;
+}
+
+.greyDark-color.data-user {
+    /* font-family: Arial; */
+    font-family: OpenSans;
+    font-size: 11px;
+}
+
+.greyDark-color-op5-border-bottom {
+    border-bottom: 1px solid rgba(153,153,153,.5);
+}
+
+.section-left-border-bottom {
+    border-bottom: 1px solid #ddd;
+}

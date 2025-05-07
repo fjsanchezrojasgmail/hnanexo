@@ -1,0 +1,33 @@
+{
+    "iconInfo": {
+        "view": true
+    },
+    "name": {
+        "view": true
+    },
+    "id": {
+        "view": false
+    },
+    "age": {
+        "view": true
+    },
+    "cipa": {
+        "view": true,
+        "system": "CIPAUTONOMICO"
+    },
+    "dniNie": {
+        "label": "mpi.filter.dni",
+        "view": true,
+        "system": "NNESP"
+    },
+    "phones": {
+        "view": true
+    },
+    "identifier": {
+        "view": false
+    },
+    
+    "action": {
+        "view": true
+    }
+}

@@ -1,0 +1,37 @@
+import { Injectable } from '@angular/core';
+import { IHttpTokenizer } from '@oh/hn-services/build/service/http.tokenizer.interface.service';
+import { KeycloakService } from '@oh/hn-services/build/service/keycloak.service';
+
+
+/**
+ * Clase HttpTokenizerService que implementa el método para obtener el token que se incluirá
+ * en las peticiones Http de nuestra librería de widgets
+ */
+@Injectable()
+export class HttpTokenizerService implements IHttpTokenizer {
+
+    /**
+     * Constructor con el que inyectamos el servicio encargado de proporcionar el token
+     * @param xxxService
+     */
+    constructor(private _keycloakService: KeycloakService) { }
+
+    /**
+     * Método que devuelve el token a utilizar
+     */
+    getToken(): Promise<string> {
+        return this._keycloakService.getToken();
+    }
+
+    getTokenResponse(property: string): any {
+        return this._keycloakService.getTokenResponse(property);
+    }
+
+    /* TODO Descomentar cuando se quiera definir el token en debug
+    getToken() {
+        return new Promise<string>((resolve, reject) => {
+            resolve(<string>'eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJNOW9DdDBvdGZfdExWbHV3ZzhWN09hX08zTnk1Q2tPVzd3TzYzTmg3N21FIn0.eyJqdGkiOiI4N2E3NjA5NS03ZmMzLTQwN2EtYTYyOC04NDMwMjEwMDJlOTgiLCJleHAiOjIxNDYwMjMxNjYsIm5iZiI6MCwiaWF0IjoxNTIzOTQzMTY2LCJpc3MiOiJodHRwOi8vd2VibG9naWMucHJveXZhbGhud2wxLmluZHJhLmVzL2F1dGgvcmVhbG1zL2hucm9sZSIsImF1ZCI6Imhucm9sZSIsInN1YiI6ImY6MzFmY2I5MWUtNjM3MS00YjRlLWJjZGItYzA4MTEwNWJhY2YzOnVzX2FkbWluIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiaG5yb2xlIiwibm9uY2UiOiJkNDE2MGM5MS1jMTE3LTQ2YzEtYTAyMi03MDdmZGM3N2ZhMzIiLCJhdXRoX3RpbWUiOjE1MjM5NDMxNjAsInNlc3Npb25fc3RhdGUiOiI5Y2IyNTAxNS05OGYyLTRmMTgtYWQ2YS0yOGQ0MDgyMjdkZDgiLCJhY3IiOiIwIiwiY2xpZW50X3Nlc3Npb24iOiJhMjEwNWIxMi02MGIwLTRkYmEtOWZlOS0wZjg0NDgxM2YzZDIiLCJhbGxvd2VkLW9yaWdpbnMiOlsiKiJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiUk9MRV9VU0VSIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnt9LCJobm9yZ2FuaXphdGlvbiI6Int9IiwicmVzb3VyY2UiOltdLCJyZWFsbV9hY2Nlc3Mucm9sZXMiOlsiSE5DQVRfQURNX1JFQUQiLCJITkNBVF9TUEFfUkVBRCIsIkhOQVVUX0ZVTl9TVFJVQ1RfV1JJVEVfU1lTIiwiSE5QT0JfUE9CX0RVUExJQ0FURV9QUk9QT1NBTCIsIkhOQ0FUX1NQQV9XUklURSIsIkhOQVVUX0FETV9XUklURSIsIkhOQVVUX0hJU1RfQ09OTkVDVElPTl9TWVMiLCJITlBPQl9QT0JfV1JJVEUiLCJITkNBVF9BRE1fV1JJVEUiLCJITkFVVF9QSFlTX1NUUlVDVF9XUklURV9TWVMiLCJITlBPQl9QT0JfV1JJVEVfQ09ORklERU5USUFMIiwiSE5BVVRfRlVOX1NUUlVDVF9SRUFEX1NZUyIsIkhOUE9CX1BPQl9SRUFEX0NPTkZJREVOVElBTCIsIkhOQVVUX1BIWVNfU1RSVUNUX1JFQURfU1lTIiwiSE5DQVRfQ0FUX1JFQUQiLCJITkFVVF9DT05GX1JPTEVfUFJGX1JFQUQiLCJITlBPQl9QT0JfQ09OQ0lMSUFUSU9OX01BTkFHRU1FTlQiLCJITlBPQl9QT0JfUkVBRCIsIkhOQVVUX1VTUl9SRUFEX1NZUyIsIkhOUE9CX0FETV9XUklURSIsIkhOUE9CX1BPQl9DT05DSUxJQVRJT05fU0VBUkNIIiwiSE5DQVRfQ0FUX1dSSVRFIiwiSE5QT0JfUE9CX0VYVEVSTkFMX1NZU1RFTSIsIkhOUE9CX1BPQl9BQ1RJVkVfUEFTU0lWRSIsIkhOQ0FUX0NBVF9WQUxVRSIsIkhOQVVUX1VTUl9XUklURV9TWVMiLCJITlBPQl9BRE1fUkVBRCIsIkhOUE9CX1BPQl9EVVBMSUNBVEVfTUFOQUdFTUVOVCIsIkhOQVVUX1BSRl9XUklURSIsIkhOQVVUX0ZVTl9SRUFEIiwiSE5BVVRfRlVOX0FDVElWRV9QQVNTSVZFIiwiSE5QT0JfUE9CX0NPTkZJREVOVElBTCIsIkhOQVVUX0ZVTl9MQUJFTCIsIkhOQVVUX0FETV9SRUFEIiwiSE5BVVRfQ09ORl9ST0xFX1BSRl9XUklURSIsIkhOQVVUX1BSRl9SRUFEIl0sImhucm9sZSI6eyJjb2RlIjoiVVNfQURNSU5fUk9MX1NZU1RFTSIsImRpc3BsYXkiOiJTSVNURU1BIiwic2NvcGUiOiIxIn0sIm5hbWUiOiJVc3VhcmlvIGFkbWluaXN0cmFkb3IgYWRtaW5pc3RyYWRvciIsInByZWZlcnJlZF91c2VybmFtZSI6InVzX2FkbWluIiwiZ2l2ZW5fbmFtZSI6IlVzdWFyaW8gYWRtaW5pc3RyYWRvciIsImZhbWlseV9uYW1lIjoiYWRtaW5pc3RyYWRvciIsImVtYWlsIjoiIn0.ixGckHFkvqRhkLp3dyhqiXI_ARE-MpL-K42H23AjbXXBrS6vLTCvQy4Rcuhns9OGLDs5p_sJXH5vRbK0JedhJwfjaNDWbHlLdvtJt6RlB5JUnvFtwNigrWqVZR6f4s_KcpfnmWs7_kIUy4BiPw9AnNxTT4QSfg9Mhs-z-Y_Zlozwe1V4HBhMq5nekap8cqIqAgKN-lglIhKGobhgpdIJ3wOuTq8k83R1z9S9MfzHHGn4AGaN-wSDt6BlKTom05SrcBqkJRBYmolDSN58LbfSEsU1TaVVEMPBlpsFNmmK9gVaLbaXRz-X3CN4XarSDV-lZg_Oy4J4fujLb1vIWFj71w');
+        });
+        }
+    */
+}

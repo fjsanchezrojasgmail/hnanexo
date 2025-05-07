@@ -1,0 +1,16 @@
+<div class="hn-messages">
+	<div [hidden]="emptyMessages()" class="hn-messages-info">
+		<ul>
+			<li *ngFor='let message of messages'>
+				<span class="hn-messages-info-summary">{{ message | translate }}</span>
+			</li>
+		</ul>
+	</div>
+	<div [hidden]="emptyErrors()" class="hn-messages-error">
+		<ul>
+			<li *ngFor='let error of errors'>
+				<span class="hn-messages-error-summary">{{ error }}</span>
+			</li>
+		</ul>
+	</div>
+</div>

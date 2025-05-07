@@ -1,0 +1,42 @@
+
+.hn-body > hn-component-header ~ .hn-section-right {
+  height: calc(100% - 40px);
+  width: calc(100% - 290px);
+}
+
+/** two-panels-container */
+.border-01 {
+  border: 1px solid #c9c9c7;
+}
+
+.container-fluid {
+  padding-bottom: 30px;
+  padding-right: 0;
+  padding-left: 0;
+  height: 100%;
+}
+
+/** Ocultar dropdown en "Ver Detalles" **/
+
+hn-search hn-split-button-component .hn-split-button-icono-dropdown {
+  display: none;
+}
+
+hn-search hn-split-button-component .hn-split-button-container {
+  width: 36px;
+  /**Oculta el icono de detalles del paciente
+  display: none;**/
+}
+
+hn-search hn-split-button-component .hn-split-button-container>.hn-item-split-button-ico {
+  width: 35px;
+}
+
+/** Oculta opciones secundarias que se muestran al hacer clic en "Ver detalles   **/
+hn-patient-detail .row hn-accordion-component .hn-accordion div hn-accordion-tab-component {
+ display: none;
+}
+
+
+
+

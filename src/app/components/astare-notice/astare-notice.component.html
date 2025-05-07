@@ -1,0 +1,18 @@
+<div class="row notice">
+    <div class="col-md-12">
+        <hn-dialog-component class="dialogInformation" #dialogAstareNotice [titleHeader]="titleHeader">
+          <div>
+            <h3 style="text-align:center">{{textNoticeAstare}}</h3>
+          </div>
+          <div class="imageClose">
+            <hn-button-component [type]="'button'" (method)="closeDialog($event)"
+              [label]="labelButtonClose" icon="fa-close" shape="circleDialog">
+            </hn-button-component>
+          </div>
+        </hn-dialog-component>
+    </div>
+</div>
+
+
+
+
