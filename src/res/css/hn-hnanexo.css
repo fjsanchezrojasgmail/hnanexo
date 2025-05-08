@@ -1,0 +1,82 @@
+@font-face {
+  font-family: "OpenSans";
+  src: url("fonts/OpenSans/OpenSans-Regular.ttf");
+  font-size: 13px;
+}
+
+@font-face {
+  font-family: "OpenSans Extra Bold";
+  src: url("fonts/OpenSans/OpenSans-ExtraBold.ttf");
+  font-size: 13px;
+}
+
+@font-face {
+  font-family: "OpenSans Medium";
+  src: url("fonts/OpenSans/OpenSans-Medium.ttf");
+  font-size: 13px;
+}
+
+@font-face {
+  font-family: "OpenSans Light";
+  src: url("fonts/OpenSans/OpenSans-Light.ttf");
+  font-size: 13px;
+}
+
+.justifLeft{
+    display: flex;
+    align-items: center;
+    justify-content: initial;
+}
+
+/* Quitamos el efecto :hover cuando el sitch está deshabilitado */
+hn-switch-component .ui-inputswitch.ui-state-disabled .ui-inputswitch-handle{
+  background-color: #d8d8d8;
+}
+
+
+hn-messages-component .hn-messages-float .float-container{
+  overflow-x: hidden;
+}
+
+hn-button-component>button.hn-main-button:not([disabled]) {
+  background: #1455C7!important;
+  border: 1px solid #1455C7!important;
+}
+
+hn-button-component>button.hn-main-button:not([disabled]):hover {
+  background: #608AD5!important;
+  border: 1px solid #608AD5!important;
+}
+
+
+html body * {
+  font-family: "OpenSans";
+}
+
+.hn40v2 {
+  font-family: "OpenSans Medium";
+}
+
+.hn60v9 {
+  font-family: "OpenSans";
+}
+
+.hn20v1 {
+    font-family: "OpenSans";
+}
+
+.hn80v1 {
+  font-family: "OpenSans Medium";
+}
+
+.hn80v4, hn-dialog-component.silverBackground .ui-dialog-titlebar .ui-dialog-title p-header, hn-dialog-component.silverBackground .ui-dialog-titlebar .ui-dialog-title p-header span, hn-dialog-component.snowBackground .ui-dialog-titlebar .ui-dialog-title p-header, hn-dialog-component.snowBackground .ui-dialog-titlebar .ui-dialog-title p-header span {
+  font-family: "OpenSans";
+}
+
+.hn40v7 {
+  font-family: "OpenSans";
+}
+
+.hn-steps-component .ui-steps.steps-custom .ui-steps-item .ui-steps-title {
+  font-family: "OpenSans";
+}
