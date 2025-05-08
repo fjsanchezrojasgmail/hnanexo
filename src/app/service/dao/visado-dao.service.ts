@@ -1,6 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, Inject } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Http } from '@angular/http';
+import { Observable } from 'rxjs';
+
 import { hnanexoConstants } from '../../bean/hnanexo-constants.bean';
 import { LoadService } from '@sacyl/ohcommonsacyl-services/build/service/dao/load.service';
 import { GenericService } from '@sacyl/ohcommonsacyl-services/build/service/dao/generic.service';
@@ -13,7 +14,7 @@ import { ConfigParamListRS } from '@oh/hnconf-services/build/bean/rs/config-para
 @Injectable()
 export class VisadoDAOService extends GenericService<ConfigParamListRS> {
 
-    private URL_LIST: string;
+    private URL_LIST: string | undefined;
 
     /**
      * Constructor
@@ -21,7 +22,7 @@ export class VisadoDAOService extends GenericService<ConfigParamListRS> {
      * @param loadService
      * @param _propertiesVMService
      */
-    constructor(http: Http, loadService: LoadService,
+    constructor(http: HttpClient, loadService: LoadService,
         @Inject('IPropertiesServiceGeneric') private _propertiesVMService: IPropertiesServiceGeneric) {
         super(http, loadService);
     }

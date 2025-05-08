@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IHttpTokenizer } from '@oh/hn-services/build/service/http.tokenizer.interface.service';
-import { KeycloakService } from '@oh/hn-services/build/service/keycloak.service';
+import { KeycloakService } from './keycloak.service';
+
 
 
 /**
@@ -20,11 +21,11 @@ export class HttpTokenizerService implements IHttpTokenizer {
      * Método que devuelve el token a utilizar
      */
     getToken(): Promise<string> {
-        return this._keycloakService.getToken();
+        return KeycloakService.getToken();
     }
 
     getTokenResponse(property: string): any {
-        return this._keycloakService.getTokenResponse(property);
+        return KeycloakService.getTokenResponse(property);
     }
 
     /* TODO Descomentar cuando se quiera definir el token en debug

@@ -1,10 +1,14 @@
 import { Injectable, Inject } from '@angular/core';
-import { IConsultServiceHnAnexoDaoService } from '@sacyl/hnanexo-services/build/service/dao/consult-service-hnanexo-dao.interface.service';
-import { ConsultServiceRS } from '@sacyl/hnanexo-services/build/bean/rs/consult-service.bean';
+
+
 import { ConfigService } from './config.service';
-import { ConsultServiceCriteria } from '@sacyl/hnanexo-services/build/bean/rs/criteria/consult-service-criteria.bean';
+
 import { Subject } from 'rxjs';
-import { Bundle } from '@oh/hn-services/build/bean/bundle-bean';
+import { ConsultServiceCriteria } from './dao/bean/criteria/consult-service-criteria.bean';
+import { ConsultServiceRS } from '../bean/rs/fhir/consult-service.bean';
+import { IConsultServiceHnAnexoDaoService } from './dao/interface/consult-service-hnanexo-dao';
+import { ConsultServiceHnanexoService } from './consult-service-hnanexo.service';
+
 
 /**
  * Clase ServiceUserLogin que implementa el método para obtener los datos suficientes mediante una llamada al backup
@@ -18,7 +22,7 @@ export class ServiceUserLogin {
     public isPrescriptorServiceLoaded$: Subject<boolean>;
 
     constructor(
-        @Inject('IConsultServiceHnAnexoDAOService') private _consultServiceService: IConsultServiceHnAnexoDaoService,
+        private consultServiceHnanexoService: ConsultServiceHnanexoService,
         private configService: ConfigService,) {
             this.isPrescriptorServiceLoaded$ = new Subject<boolean>();
         }
@@ -26,7 +30,7 @@ export class ServiceUserLogin {
         callService(service:string): void {
             const criteria = new ConsultServiceCriteria();
             criteria.keyCode = service;
-            this._consultServiceService.search(criteria, this.configService.urlGetHnConfiguration)
+            this.consultServiceHnanexoService.search(criteria, this.configService.urlGetHnConfiguration)
                 .subscribe(
                     (bundle: any)  => {
                         this.onLoadServicePrescriptorSuccess(bundle);

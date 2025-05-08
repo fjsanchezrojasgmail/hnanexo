@@ -20,7 +20,7 @@ import { MessageService } from '../../service/message.service';
 import { Message } from '../../bean/rs/fhir/message.bean';
 import { Constants } from '../../bean/constants';
 import { ConsultAstareRS } from '../../bean/rs/fhir/consult-astareRS.bean';
-import { LoadService } from '../../service/dao/load.service';
+
 import { ServiceUserLogin } from '../../service//service-user-login';
 import { ConfigService } from '../../service/config.service';
 import { ComponentMessages } from '../../bean/i18n-bean';
@@ -40,6 +40,9 @@ import { IPropertiesServiceGeneric } from '../../service/build/service/iproperti
 import { CacheHnAnexoDAOService } from '../../service/dao/cache-hnanexo-dao.service';
 import { IConsultAstareHnAnexoDAOService } from '../../service/dao/interface/iconsult-astare-hnanexo-dao';
 import { SharedResourcesFhirDAOService } from '../../service/dao/shared-resources-fhir.dao.service';
+import { LoadService } from '../../service/dao/load.service';
+import { PropertiesVMService } from '../../service/properties-vm.service';
+
 
 
 
@@ -113,32 +116,24 @@ export class MainComponent implements OnInit {
 
     constructor(
 
-
       private _messageService: MessageService,
-
-
-
       private _loginService: LoginService,
-
-
-      private _loadService: LoadService,
-
+      //private _loadService: LoadService,
       private comunicationService: CommunicationService,
-
       private domSanitizerService: DomSanitizer,
       private route: Router,
       private serviceUserLogin: ServiceUserLogin,
-		  public translate: TranslateService,
-        @Inject('IPropertiesServiceGeneric') private _propertiesVMService: IPropertiesServiceGeneric,
-        @Inject('IHttpTokenizer') private _tokenizerService: HttpTokenizerService,
-        @Inject('ICacheHnAnexoDAOService') private _cacheAnexoService: CacheHnAnexoDAOService,
-        @Inject('IConsultAstareHnAnexoDAOService') private _consultAstareService: IConsultAstareHnAnexoDAOService,
-        @Inject('ISharedResourcesFhirDAOService') private _sharedResourcesFhir: SharedResourcesFhirDAOService,
+		  private  translate: TranslateService,
+      private _propertiesVMService: PropertiesVMService,
+      private _tokenizerService: HttpTokenizerService,
+      private _cacheAnexoService: CacheHnAnexoDAOService,
+      //@Inject('IConsultAstareHnAnexoDAOService') private _consultAstareService: IConsultAstareHnAnexoDAOService,
+      private _sharedResourcesFhir: SharedResourcesFhirDAOService,
 
         public configService: ConfigService) {
 
         this.loadLoggedUser();
-        this.dataSubscription = comunicationService.data$.subscribe((data: PatientRS) => {
+        this.dataSubscription = comunicationService.data$.subscribe((data) => {
 
           if(data != undefined){
             this.data = data;
@@ -180,7 +175,7 @@ export class MainComponent implements OnInit {
             // Se realiza suscripción al getHnProperties para que no inicie la carga
             // del accountmanager hasta que no tenga los parametros en el propertiesService
 
-            this._propertiesVMService.urlStream$.subscribe(
+            this._propertiesVMService.urlStream$!.subscribe(
                 (data: string)  => {
                     this.initialLoadAfterGetUser();
 
@@ -219,29 +214,29 @@ export class MainComponent implements OnInit {
                                     this._cacheAnexoService.setListResources(this._sharedResourcesFhir.referencesSharedResourcesFHIR,
                                         HNANEXOResourcesSharedFHIR.FHIR_REFERENCES_SHARED_RESOURCES);
                                     this.showContent = true;
-                                    this._loadService.endRequest();
+                                    LoadService.endRequest();
                                 },
                                 (error: string) => {
-                                    this._loadService.endRequest();
+                                  LoadService.endRequest();
                                 }
                             );
                         },
                         (error: string) => {
-                            this._loadService.endRequest();
+                            LoadService.endRequest();
                         });
 
                     this._sharedResourcesFhir.dataLoadedVerifyResourcesError$.subscribe(
                         () => {
-                            this._loadService.endRequest();
+                            LoadService.endRequest();
                         },
                         (error: string) => {
-                            this._loadService.endRequest();
+                          LoadService.endRequest();
                         }
                     );
 
 					this._sharedResourcesFhir.dataErrorResourceOrganizationCenter$.subscribe(
 					() => {
-					  this._loadService.endRequest();
+					  LoadService.endRequest();
 					  const  msgErrorOrga = new Message();
 					  let traduccion: string | undefined;
 					  this.translate.get(['message.error.organization'])
@@ -258,7 +253,7 @@ export class MainComponent implements OnInit {
 					  this.errorOrganization = true;
 					},
 					(error: string) => {
-					  this._loadService.endRequest();
+					  LoadService.endRequest();
 					}
 				  );
 
@@ -272,7 +267,7 @@ export class MainComponent implements OnInit {
         } else if(this._loginService.userStream$ !== undefined) {
             // Se realiza suscripción combinada de getHnProperties y el userStream para la carga
             // del accountmanager una vez que tenga parámetros (propertiesService) y datos de Usuario(LoginService)
-            combineLatest(this._loginService.userStream$, this._propertiesVMService.urlStream$).subscribe(
+            combineLatest(this._loginService.userStream$, this._propertiesVMService.urlStream$!).subscribe(
                 user => this.initialLoadAfterGetUser()
             );
         }
@@ -395,12 +390,12 @@ export class MainComponent implements OnInit {
     // Método que carga el usuario loggeado
     private loadLoggedUser() {
         this._userLoaded = false;
-        this._loadService.startRequest();
+        LoadService.startRequest();
         // Indicamos al load services si se van a encriptar las urls o no
-        this._loadService.setEncodedApp(this.configService.encryptUrl);
+        LoadService.setEncodedApp(this.configService.encryptUrl);
 
-        this._loadService.addNoEncodeParam('page');
-        this._loadService.setEncodeKey('ANEX067891234567');
+        LoadService.addNoEncodeParam('page');
+        LoadService.setEncodeKey('ANEX067891234567');
 
         /** Obtenemos el centro en el que estamos logeados o nos suscribimos si aun no ha sido recuperado */
         if (this._loginService.LoggedUser) {
@@ -428,7 +423,7 @@ export class MainComponent implements OnInit {
     // Se le pasa el usuario loggeado
     onUserReceived(data: any): void {
         this._userLoaded = true;
-        this._loadService.endRequest();
+        LoadService.endRequest();
         if (data) {
             this.loggedUser = data;
         }

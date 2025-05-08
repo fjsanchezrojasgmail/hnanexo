@@ -1,139 +1,299 @@
-
-import { Observable } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { Bundle } from '../bean/bundle.bean';
 import { LoadService } from './dao/load.service';
-import { HttpClient } from '@angular/common/http';
-export declare class GenericService<T> {
-    protected http: HttpClient;
-    private _loadService;
-    private loadService;
-    constructor(http: HttpClient, _loadService: LoadService);
-    /**
-     * Encrypts the text passed to it by parameter
-     * @param text
-     * @returns
-     */
-    protected encodeText(text: string): Promise<string>;
-    protected createParamsObj(parameters: any, allowEmptyString: boolean): {
-        params: URLSearchParams;
-        noEncodeParams: URLSearchParams;
-    };
-    /**
-     * GetData (not sending parameters with empty strings or null as value)
-     * @param url
-     * @param parameters
-     * @param callback
-     * @param loaderId
-     */
-    protected getData(url: string, parameters: any, callback: (data: any, error: boolean) => T, loaderId?: string): Observable<any>;
-    /**
-     * GetData (not sending parameters with empty strings or null as value)
-     * @param url
-     * @param parameters
-     * @param callback
-     * @param loaderId
-     */
-    protected getDataBundle(url: string, parameters: any, callback: (data: any, error: boolean) => Bundle<T>, loaderId?: string): Observable<any>;
-    /**
-     * Check if the parameter has to be encrypted or not
-     * @param param
-     */
-    protected checkNoEncodeParam(param: any): boolean;
-    /**
-     * GetData (allowing to send parameters with empty strings as value)
-     * @param url
-     * @param parameters
-     * @param callback
-     * @param loaderId
-     */
-    protected getDataWithEmptyStrings(url: string, parameters: any, callback: (data: any, error: boolean) => T, loaderId?: string): Observable<any>;
-    /**
-     *
-     * @param url
-     * @param parameters
-     * @param allowEmptyString - indicates wheter to allow sending parameteres with empty string as value (true) or not (false)
-     * @param callback
-     * @param loaderId
-     */
-    protected getDataWithOrWithoutEmptyStringsBundle(url: string, parameters: any, callback: (data: any, error: boolean) => Bundle<T>, loaderId?: string): Observable<any>;
-    /**
-     *
-     * @param url
-     * @param parameters
-     * @param allowEmptyString - indicates wheter to allow sending parameteres with empty string as value (true) or not (false)
-     * @param callback
-     * @param loaderId
-     */
-    protected getDataWithOrWithoutEmptyStrings(url: string, parameters: any, callback: (data: any, error: boolean) => T, loaderId?: string): Observable<any>;
-    protected getReport(url: string, callback: (data: any, error: boolean) => T, loaderId?: string): Observable<T>;
-    protected getBinaryFile(url: string, callback: (data: any, error: boolean) => T, loaderId?: string): Observable<T>;
-    /**
-     *
-     * Parte comun a los distitnso metodos postData
-     */
-    private postDataCommon(url, data, format?, responseType?, headers?);
-    /**
-     * Devuelve el OperationOutcome que devuelve el servicio
-     */
-    protected postData(url: string, data: any, callback: (data: any, error: boolean) => T, loaderId?: string, format?: string, responseType?: number, headers?: Headers): Observable<any>;
-    /**
-     * Devuelve el ArrayBuffer que devuelve el servicio
-     */
-    protected postDataBinary(url: string, data: any, callback: (data: any, error: boolean) => T, loaderId?: string, format?: string, responseType?: number, headers?: Headers): Observable<T>;
-    /**
-     * Devuelve un objecto con dos atributos:
-     * location: id que nos devuelven en el atributo location del header
-     * result: OperationOutcome del servicio
-     */
-    protected postDataHeaderAccess(url: string, data: any, callback: (data: any, error: boolean) => T, loaderId?: string, format?: string, responseType?: number, headers?: Headers): Observable<T>;
-    /**
-     * A diferencia del metodo postDataHeaderAccess, este devuelve un OperationOutcome
-     * y sustituye el id por el id que vienen en el atributo location del header
-     */
-    protected postDataHeaderResult(url: string, data: any, callback: (data: any, error: boolean) => T, loaderId?: string, format?: string, responseType?: number, headers?: Headers): Observable<T>;
-    private replacer(key, value);
-    /**
-     *
-     * Parte comun a los distitnso metodos putData
-     */
-    protected putDataCommon(url: string, data: any, headers?: Headers): IdleRequestOptions;
-    /**
-     * Devuelve el OperationOutcome que devuelve el servicio
-     */
-    protected putData(url: string, data: any, callback: (data: any, error: boolean) => T, loaderId?: string, headers?: Headers): Observable<any>;
-    /**
-     * Devuelve un objecto con dos atributos(OperationOutcomeHeader):
-     * location: id que nos devuelven en el atributo location del header
-     * result: OperationOutcome del servicio
-     */
-    protected putDataHeaderAccess(url: string, data: any, callback: (data: any, error: boolean) => T, loaderId?: string, headers?: Headers): Observable<T>;
-    /**
-     * A diferencia del metodo putDataHeaderAccess, este devuelve un OperationOutcome
-     * y sustituye el id por el id que vienen en el atributo location del header
-     */
-    protected putDataHeaderResult(url: string, data: any, callback: (data: any, error: boolean) => T, loaderId?: string, headers?: Headers): Observable<T>;
-    protected deleteData(url: string, data: any, callback: (data: any, error: boolean) => T, loaderId?: string): Observable<any>;
-    protected deleteDataCommon(url: string, data: any, headers?: Headers): IdleRequestOptions;
-    /**
-    * Devuelve el OperationOutcome que devuelve el servicio
-    */
-    protected patchData(url: string, data: any, callback: (data: any, error: boolean) => T, loaderId?: string): Observable<any>;
-    private onResponseReport(res, loaderId, callback);
-    private onResponseBinary(res, loaderId, callback);
-    private onResponse(res, loaderId, callback);
-    private onResponseBundle(res, loaderId, callback);
-    private onResponseCore(res, loaderId, callback);
-    private onResponseHeaderAccess(res, loaderId, callback);
-    private onResponseHeaderResult(res, loaderId, callback);
-    private onError(data, loaderId, callback);
-    private onErrorBundle(data, loaderId, callback);
-    private onErrorCore(data, loaderId, callback);
-    protected onComplete(): void;
-    private addFormatoURL(url, format?);
-    /**
-  * Callback de la llamada al servicio
-  * @param data {Bundle<TriageBean>}
-  * @param error {boolean}
-  */
-    onServiceResponse(data: T, error: boolean): T;
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+export abstract class GenericService<T> {
+  protected http: HttpClient;
+  private _loadService: LoadService;
+
+  constructor(http: HttpClient, _loadService: LoadService) {
+    this.http = http;
+    this._loadService = _loadService;
+  }
+
+  protected async encodeText(text: string): Promise<string> {
+    return btoa(unescape(encodeURIComponent(text)));
+  }
+
+  protected createParamsObj(parameters: any, allowEmptyString: boolean) {
+    const params = new URLSearchParams();
+    const noEncodeParams = new URLSearchParams();
+
+    Object.entries(parameters || {}).forEach(([key, value]) => {
+      if (value !== null && (allowEmptyString || value !== '')) {
+        const stringValue = String(value);
+        if (this.checkNoEncodeParam(key)) {
+          noEncodeParams.set(key, stringValue);
+        } else {
+          params.set(key, stringValue);
+        }
+      }
+    });
+
+    return { params, noEncodeParams };
+  }
+
+  protected checkNoEncodeParam(param: any): boolean {
+    return typeof param === 'string' && param.startsWith('noEncode:');
+  }
+
+  protected getData(
+    url: string,
+    parameters: any,
+    callback: (data: any, error: boolean) => T,
+    loaderId?: string
+  ): Observable<any> {
+    const { params } = this.createParamsObj(parameters, false);
+    return this.http.get<T>(`${url}?${params.toString()}`).pipe(
+      map(data => callback(data, false)),
+      catchError(err => of(callback(err, true)))
+    );
+  }
+
+  protected getDataWithEmptyStrings(
+    url: string,
+    parameters: any,
+    callback: (data: any, error: boolean) => T,
+    loaderId?: string
+  ): Observable<any> {
+    const { params } = this.createParamsObj(parameters, true);
+    return this.http.get<T>(`${url}?${params.toString()}`).pipe(
+      map(data => callback(data, false)),
+      catchError(err => of(callback(err, true)))
+    );
+  }
+
+  protected getDataBundle(
+    url: string,
+    parameters: any,
+    callback: (data: any, error: boolean) => Bundle<T>,
+    loaderId?: string
+  ): Observable<any> {
+    const { params } = this.createParamsObj(parameters, false);
+    return this.http.get<Bundle<T>>(`${url}?${params.toString()}`).pipe(
+      map(data => callback(data, false)),
+      catchError(err => of(callback(err, true)))
+    );
+  }
+
+  protected getDataWithOrWithoutEmptyStrings(
+    url: string,
+    parameters: any,
+    callback: (data: any, error: boolean) => T,
+    loaderId?: string
+  ): Observable<any> {
+    const { params } = this.createParamsObj(parameters, true);
+    return this.http.get<T>(`${url}?${params.toString()}`).pipe(
+      map(data => callback(data, false)),
+      catchError(err => of(callback(err, true)))
+    );
+  }
+
+  protected getDataWithOrWithoutEmptyStringsBundle(
+    url: string,
+    parameters: any,
+    callback: (data: any, error: boolean) => Bundle<T>,
+    loaderId?: string
+  ): Observable<any> {
+    const { params } = this.createParamsObj(parameters, true);
+    return this.http.get<Bundle<T>>(`${url}?${params.toString()}`).pipe(
+      map(data => callback(data, false)),
+      catchError(err => of(callback(err, true)))
+    );
+  }
+
+  protected getReport(
+    url: string,
+    callback: (data: any, error: boolean) => T,
+    loaderId?: string
+  ): Observable<T> {
+    return this.http.get<T>(url).pipe(
+      map(data => callback(data, false)),
+      catchError(err => of(callback(err, true)))
+    );
+  }
+
+  protected getBinaryFile(
+    url: string,
+    callback: (data: any, error: boolean) => T,
+    loaderId?: string
+  ): Observable<T> {
+    return this.http.get(url, { responseType: 'arraybuffer' as 'json' }).pipe(
+      map(data => callback(data, false)),
+      catchError(err => of(callback(err, true)))
+    );
+  }
+
+  protected postData(
+    url: string,
+    data: any,
+    callback: (data: any, error: boolean) => T,
+    loaderId?: string,
+    format: string = 'json',
+    responseType: number = 0,
+    headers?: HttpHeaders
+  ): Observable<any> {
+    return this.http.post<T>(url, data, { headers }).pipe(
+      map(res => callback(res, false)),
+      catchError(err => of(callback(err, true)))
+    );
+  }
+
+  protected postDataBinary(
+    url: string,
+    data: any,
+    callback: (data: any, error: boolean) => T,
+    loaderId?: string,
+    format: string = 'json',
+    responseType: number = 0,
+    headers?: HttpHeaders
+  ): Observable<T> {
+    return this.http.post<T>(url, data, { headers, responseType: 'arraybuffer' as 'json' }).pipe(
+      map(res => callback(res, false)),
+      catchError(err => of(callback(err, true)))
+    );
+  }
+
+  protected postDataHeaderAccess(
+    url: string,
+    data: any,
+    callback: (data: any, error: boolean) => T,
+    loaderId?: string,
+    format: string = 'json',
+    responseType: number = 0,
+    headers?: HttpHeaders
+  ): Observable<T> {
+    return this.http.post<T>(url, data, {
+      observe: 'response',
+      headers
+    }).pipe(
+      map(res => callback({
+        location: res.headers.get('location'),
+        result: res.body
+      } as any, false)),
+      catchError(err => of(callback(err, true)))
+    );
+  }
+
+  protected postDataHeaderResult(
+    url: string,
+    data: any,
+    callback: (data: any, error: boolean) => T,
+    loaderId?: string,
+    format: string = 'json',
+    responseType: number = 0,
+    headers?: HttpHeaders
+  ): Observable<T> {
+    return this.http.post<T>(url, data, {
+      observe: 'response',
+      headers
+    }).pipe(
+      map(res => {
+        const body = res.body as any;
+        const location = res.headers.get('location');
+        if (body) {
+          body.id = location;
+        }
+        return callback(body, false);
+      }),
+      catchError(err => of(callback(err, true)))
+    );
+  }
+
+  protected putData(
+    url: string,
+    data: any,
+    callback: (data: any, error: boolean) => T,
+    loaderId?: string,
+    headers?: HttpHeaders
+  ): Observable<any> {
+    return this.http.put<T>(url, data, { headers }).pipe(
+      map(res => callback(res, false)),
+      catchError(err => of(callback(err, true)))
+    );
+  }
+
+  protected putDataHeaderAccess(
+    url: string,
+    data: any,
+    callback: (data: any, error: boolean) => T,
+    loaderId?: string,
+    headers?: HttpHeaders
+  ): Observable<T> {
+    return this.http.put<T>(url, data, {
+      observe: 'response',
+      headers
+    }).pipe(
+      map(res => callback({
+        location: res.headers.get('location'),
+        result: res.body
+      } as any, false)),
+      catchError(err => of(callback(err, true)))
+    );
+  }
+
+  protected putDataHeaderResult(
+    url: string,
+    data: any,
+    callback: (data: any, error: boolean) => T,
+    loaderId?: string,
+    headers?: HttpHeaders
+  ): Observable<T> {
+    return this.http.put<T>(url, data, {
+      observe: 'response',
+      headers
+    }).pipe(
+      map(res => {
+        const body = res.body as any;
+        const location = res.headers.get('location');
+        if (body) {
+          body.id = location;
+        }
+        return callback(body, false);
+      }),
+      catchError(err => of(callback(err, true)))
+    );
+  }
+
+  protected deleteData(
+    url: string,
+    data: any,
+    callback: (data: any, error: boolean) => T,
+    loaderId?: string
+  ): Observable<any> {
+    return this.http.request<T>('delete', url, { body: data }).pipe(
+      map(res => callback(res, false)),
+      catchError(err => of(callback(err, true)))
+    );
+  }
+
+  protected patchData(
+    url: string,
+    data: any,
+    callback: (data: any, error: boolean) => T,
+    loaderId?: string
+  ): Observable<any> {
+    return this.http.patch<T>(url, data).pipe(
+      map(res => callback(res, false)),
+      catchError(err => of(callback(err, true)))
+    );
+  }
+
+  protected onComplete(): void {
+    // Finalización de procesos, si aplica
+  }
+
+  protected onServiceResponse(data: T, error: boolean): T {
+    return data;
+  }
+
+  private replacer(key: string, value: any) {
+    return value === undefined ? null : value;
+  }
+
+  private addFormatoURL(url: string, format: string = 'json'): string {
+    return `${url}?_format=${format}`;
+  }
 }
