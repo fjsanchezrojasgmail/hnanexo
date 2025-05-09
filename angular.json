@@ -27,9 +27,18 @@
               },"src/assets"
             ],
             "styles": [
+              "node_modules/primeui/themes/bootstrap/theme.css",
+              "node_modules/primeui/primeui-ng-all.css",
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/res/css/hn-hnanexo.css"
+              "node_modules/ng2-dnd/style.css",
+              "node_modules/fullcalendar/dist/fullcalendar.min.css",
+              "src/res/css/hn-hnanexo.css",
+              "node_modules/@oh/hn-components/build/resources/css/base/hn-all.min.css",
+              "node_modules/@oh/hn-styles/build/resources/css/hn.css",
+              "node_modules/@oh/hn-styles/build/resources/css/hn-table.css",
+              "node_modules/@oh/hn-styles/build/resources/css/hn-icons.css",
+              "node_modules/@oh/hn-styles/build/resources/css/hn-font.css"
             ],
             "scripts": []
           },

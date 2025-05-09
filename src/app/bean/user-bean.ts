@@ -1,4 +1,4 @@
-export declare enum HNSessionUserScope {
+export enum HNSessionUserScope {
   NA = 0,
   SYSTEM = 1,
   ORGANIZATION = 2,

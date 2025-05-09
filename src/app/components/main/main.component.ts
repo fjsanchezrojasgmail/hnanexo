@@ -175,7 +175,8 @@ export class MainComponent implements OnInit {
             // Se realiza suscripción al getHnProperties para que no inicie la carga
             // del accountmanager hasta que no tenga los parametros en el propertiesService
 
-            this._propertiesVMService.urlStream$!.subscribe(
+            if(this._propertiesVMService.urlStream$){
+            this._propertiesVMService.urlStream$.subscribe(
                 (data: string)  => {
                     this.initialLoadAfterGetUser();
 
@@ -264,6 +265,7 @@ export class MainComponent implements OnInit {
                     // sería meter display:hidden en el estilo del loader para que cuando cargue no se muestre
                 }
             );
+          }
         } else if(this._loginService.userStream$ !== undefined) {
             // Se realiza suscripción combinada de getHnProperties y el userStream para la carga
             // del accountmanager una vez que tenga parámetros (propertiesService) y datos de Usuario(LoginService)
@@ -447,7 +449,9 @@ export class MainComponent implements OnInit {
      * Funcion para recoger los datos del usuario logado en la aplicación.
      */
     private loadSermasUser() {
+
       if(this._loginService.LoggedUser !== undefined)
+
         this.sermasUser = BundleUtil.getSermasUserFromProperty(this._loginService.LoggedUser, this.datos_login);
 
         // Se guarda el usuario del sermas loggeado en la cache de anexo para usarlo en otros componentes
@@ -459,6 +463,7 @@ export class MainComponent implements OnInit {
             this.removePermissionsPrescriptorMedical();
             console.error(this.componentMessages['info.user.login.tokenUser.error']);
         }
+
     }
 
 
