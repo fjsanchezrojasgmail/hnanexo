@@ -82,6 +82,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HNSessionUserDataRS, HNSessionUserScope } from '../bean/user-bean';
 import { KeycloakService } from '../service/keycloak.service';
+import { ProfileUserHnanexoStatus } from '../bean/hnanexo-constants.bean';
 
 @Injectable({
   providedIn: 'root'
@@ -115,7 +116,7 @@ export class LoginService {
         urlVuelta: ''
       },
       role: {
-        code: '',
+        code: ProfileUserHnanexoStatus.ANEXO_ADMINISTRADOR,
         display: '',
         alias: '',
         scope: '',
@@ -166,7 +167,7 @@ export class LoginService {
       },
       scope: HNSessionUserScope.CENTER,
       hnrole: {
-        code: '',
+        code: ProfileUserHnanexoStatus.ANEXO_ADMINISTRADOR,
         display: '',
         alias: '',
         scope: '',

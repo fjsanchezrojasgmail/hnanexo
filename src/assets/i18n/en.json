@@ -1,6 +1,20 @@
 {
   "": "",
-  "title": "Title",
+  "title": {
+    "title": "HnAnexo",
+    "hnlabel": {
+      "title": "HnAnexo",
+      "module": "Administrator"
+    },
+    "module": "Administrator"
+  },
+  "tooltip":{
+    "header":{
+      "open": "Open",
+      "close": "Close",
+      "session": "Session"
+    }
+  },
   "label": {
     "button": "Button",
     "pending": "Pending",

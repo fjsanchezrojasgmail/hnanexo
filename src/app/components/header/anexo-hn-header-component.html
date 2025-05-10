@@ -9,7 +9,8 @@
       <!-- TITULO APP -->
       <div class="hn-header-title">
         <span class="hn-name-product" [ngClass]="classColorText">{{title1}}</span>
-        <span class="hnanexo-name-app" [ngClass]="classColorText" [title]="infoOpened? componentMessages['label.tooltip.title.app'] : ''">{{title2}}</span>
+        <span class="hnanexo-name-app"
+        [ngClass]="classColorText" [title]="infoOpened? componentMessages['label.tooltip.title.app'] : ''">{{title2}}</span>
       </div>
       <!-- BOTÓN PARA VER MANUAL -->
       <div class='header-item-manual hn-border-left hn-border-right' title="{{componentMessages['label.show.manual']}}" (click)="openManual()">

@@ -18,8 +18,8 @@
 	<!-- CABECERA -->
 	<hnanexo-component-header
 	*ngIf="!isEmbedded()"
-	title1="{{'label.title.hn' | translate}}"
-	title2="{{'label.title.module' | translate}}"
+	[title1]="'label.title.hn' | translate"
+	[title2]="'label.title.module' | translate"
 	[name]="loggedUser?.userName!"
 	[hnrole]="loggedUser?.hnrole?.display"
 	[center]="loggedUser?.center?.display"
@@ -28,9 +28,9 @@
 	[num_colegiado]="loggedUser?.num_colegiado"
 	[user]="loggedUser"
 	[existePaciente]="existePaciente"
-	tooltip1="{{'tooltip.header.open' | translate}}"
-	tooltip2="{{'tooltip.header.close' | translate}}"
-  tooltip3="{{'tooltip.header.session' | translate}}"
+	[tooltip1]="'tooltip.header.open' | translate"
+	[tooltip2]="'tooltip.header.close' | translate"
+  [tooltip3]="'tooltip.header.session' | translate"
 	[urlManual]='urlManual'
 	[urlManualAdmin]='urlManualAdmin'
 	(logout)="logout()">

@@ -34,6 +34,7 @@
               "node_modules/ng2-dnd/style.css",
               "node_modules/fullcalendar/dist/fullcalendar.min.css",
               "src/res/css/hn-hnanexo.css",
+              "node_modules/@oh/hn-components/build/resources/css/base/bootstrap/hn-theme.min.css",
               "node_modules/@oh/hn-components/build/resources/css/base/hn-all.min.css",
               "node_modules/@oh/hn-styles/build/resources/css/hn.css",
               "node_modules/@oh/hn-styles/build/resources/css/hn-table.css",

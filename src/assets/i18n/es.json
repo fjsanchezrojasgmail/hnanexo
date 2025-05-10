@@ -1,7 +1,22 @@
 {
   "": "",
-  "title": "Título",
+  "tooltip":{
+    "header":{
+      "open": "Abrir",
+      "close": "Cerrar",
+      "session": "Sesión"
+    }
+  },
   "label": {
+    "title": {
+    "hn": "HnAnexo",
+    "title": "HnAnexo",
+    "hnlabel": {
+      "title": "HnAnexo",
+      "module": "Administrador"
+    },
+    "module": "Administrador"
+  },
     "button": "Botón",
     "pending": "Pendiente",
     "loading": "Cargando",
