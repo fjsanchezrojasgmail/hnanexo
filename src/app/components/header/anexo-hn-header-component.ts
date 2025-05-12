@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { TruncatePipe } from '../../pipes/truncateText.pipe';
 
 @Component({
-  selector: 'hnanexo-component-header',
+  selector: 'anexo-hn-header-component',
   standalone: true,
   imports: [CommonModule, TruncatePipe],
   templateUrl: './anexo-hn-header-component.html',

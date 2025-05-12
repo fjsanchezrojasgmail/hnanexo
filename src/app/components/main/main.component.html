@@ -10,13 +10,13 @@
 <!-- application body -->
 <div id="app-body" [hidden]="isloaded() != true" class="hn-body">
 	<!--Comprobamos si mostramos hn-messages-->
-	<hnanexo-component-messages [messages]="'messageSuccess' | translate"  [timeShow]="messageSuccess?.text?.length > 125 ? 8 : 5" severity="success"></hnanexo-component-messages>
-	<hnanexo-component-messages [messages]="'messageError' | translate" [timeShow]="messageError?.text?.length > 125 ? 8 : 5" severity="error"></hnanexo-component-messages>
-	<hnanexo-component-messages [messages]="'messageInfo' | translate" [timeShow]="messageInfo?.text?.length > 125 ? 8 : 5" severity="info"></hnanexo-component-messages>
-	<hnanexo-component-messages [messages]="'messageWarning' | translate" [timeShow]="messageWarning?.text?.length > 125 ? 8 : 5" severity="warning"></hnanexo-component-messages>
+	<hn-messages-component [messages]="'messageSuccess' | translate"  [timeShow]="messageSuccess?.text?.length > 125 ? 8 : 5" severity="success"></hn-messages-component>
+	<hn-messages-component [messages]="'messageError' | translate" [timeShow]="messageError?.text?.length > 125 ? 8 : 5" severity="error"></hn-messages-component>
+	<hn-messages-component [messages]="'messageInfo' | translate" [timeShow]="messageInfo?.text?.length > 125 ? 8 : 5" severity="info"></hn-messages-component>
+	<hn-messages-component [messages]="'messageWarning' | translate" [timeShow]="messageWarning?.text?.length > 125 ? 8 : 5" severity="warning"></hn-messages-component>
 
 	<!-- CABECERA -->
-	<hnanexo-component-header
+	<anexo-hn-header-component
 	*ngIf="!isEmbedded()"
 	[title1]="'label.title.hn' | translate"
 	[title2]="'label.title.module' | translate"
@@ -34,7 +34,7 @@
 	[urlManual]='urlManual'
 	[urlManualAdmin]='urlManualAdmin'
 	(logout)="logout()">
-	</hnanexo-component-header>
+	</anexo-hn-header-component>
 
 	<!-- APP CONTENT -->
 	<div *ngIf="showContent" class="container-fluid">

@@ -4,7 +4,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MessageService } from '../../service/message.service';
 
 @Component({
-  selector: 'hnanexo-component-messages',
+  selector: 'hn-messages-component',
   standalone: true,
   imports: [CommonModule, TranslateModule],
   templateUrl: './messages.component.html',

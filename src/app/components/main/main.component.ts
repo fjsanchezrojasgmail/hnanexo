@@ -170,14 +170,15 @@ export class MainComponent implements OnInit {
         if (this.locale.startsWith('es')) {
             this.componentMessages = ComponentMessages.es;
         }
-
+        console.log("LoginService.LoggedUser:", this._loginService.LoggedUser);
         if (this._loginService.LoggedUser) {
             // Se realiza suscripción al getHnProperties para que no inicie la carga
             // del accountmanager hasta que no tenga los parametros en el propertiesService
+            console.log("PropertiesVMService:", this._propertiesVMService.getConstants$());
+            if(this._propertiesVMService.getConstants$()){
 
-            if(this._propertiesVMService.urlStream$){
-            this._propertiesVMService.urlStream$.subscribe(
-                (data: string)  => {
+            this._propertiesVMService.getConstants$().subscribe(
+                (data)  => {
                     this.initialLoadAfterGetUser();
 
                     // Verificamos los recursos compartidos
@@ -374,6 +375,7 @@ export class MainComponent implements OnInit {
      * Inicialización tras cargar el usuario
      */
     private initialLoadAfterGetUser() {
+      console.log("InitialLoadAfterGetUser");
         // La llamada a los servicios debe hacerse una vez se haya cargado el usuario y los properties.
         // Para asegurarnos de que las propiedades (URLs) se hayan obtenido correctamente.
         let url = this._propertiesVMService.getValuePropertieByName(Constants.URL_HNAUT);
