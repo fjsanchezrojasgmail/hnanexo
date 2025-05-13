@@ -1,0 +1,81 @@
+<div id="adm-rule" class="general-entity-div divRelative">
+
+  <!-- Listado -->
+  <hnanexo-adm-rule-list
+    [urlHnConfiguration]="urlHnConfiguration"
+    [paginationTable]="paginationTable"
+    [updateList]= "updateList"
+    (onCreateRuleEvent)="methodClickCreateRule()"
+    (editRuleEvent)="methodClickEditRule($event)"
+    (detailRuleEvent)="methodClickDetailRule($event)">
+  </hnanexo-adm-rule-list>
+
+  <!-- Create panel -->
+  <hn-right-panel #ruleCreatePanel
+    [id]="'ruleCreatePanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.create.rule']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-rule"
+    modal="true"
+    mode="info">
+      <hnanexo-adm-rule-form *ngIf="ruleCreatePanel.block"
+        [urlHnConfiguration]="urlHnConfiguration"
+        (onSubmitForm)="methodOnSubmitFormCreateRule()"
+        (onReturnToList)="methodCloseCreateRule()">
+      </hnanexo-adm-rule-form>
+  </hn-right-panel>
+
+  <!-- Edit panel -->
+  <hn-right-panel #ruleEditPanel
+    [id]="'ruleEditPanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.modify.rule']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-rule"
+    modal="true"
+    mode="info">
+      <hnanexo-adm-rule-form *ngIf="ruleEditPanel.block"
+        [urlHnConfiguration]="urlHnConfiguration"
+        [rule]="selectedRule"
+        (onSubmitForm)="methodOnSubmitFormEditRule()"
+        (onReturnToList)="methodCloseEditRule()">
+      </hnanexo-adm-rule-form>
+  </hn-right-panel>
+
+    <!-- Detail panel -->
+    <hn-right-panel #ruleDetailPanel
+    [id]="'ruleDetailPanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.rule']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-rule"
+    modal="true"
+    mode="info">
+      <hnanexo-adm-rule-detail *ngIf="ruleDetailPanel.block"
+      [urlHnConfiguration]="urlHnConfiguration"
+      [rule]="selectedRule"
+      (onReturnToList)="methodCloseDetailRule()">
+      </hnanexo-adm-rule-detail>
+  </hn-right-panel>
+
+      <!-- Modal que pide confirmación para cancelar la creación o modificación -->
+      <hn-dialog-component #modalCancelOperation
+      [titleHeader]="selectedRule ? vm.componentMessages['label.modal.title.cancel.modification'] : vm.componentMessages['label.modal.title.cancel.creation']"
+      [width]="500"
+      [type]="dialog"
+      class="snowBackground"
+      [modal]="true"
+      (methodOnAccept)="accept()"
+      (methodOnCancel)="cancel()"
+      (methodOnHide)="cancel()"
+      [labelButtonAccept]="vm.componentMessages['label.modal.action.accept']"
+      [labelButtonCancel]="vm.componentMessages['label.modal.action.cancel']"
+      [iconAccept]="iconAccept"
+      [iconCancel]="iconCancel">
+      <div>
+        <p class="hn20v2 text-justify">{{selectedRule ? vm.componentMessages['label.modal.text.cancel.modification'] : vm.componentMessages['label.modal.text.cancel.creation']}}</p>
+        <span class="font-weight-bold">{{vm.componentMessages['label.modal.confirmation.message']}}</span>
+      </div>
+      </hn-dialog-component>
+</div>

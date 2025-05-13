@@ -1,0 +1,10 @@
+
+hnanexo-administration-mot-prescription div#motPrescriptionDetailPanel{
+  left: auto!important;
+  right: 0px;
+}
+
+/* Quitamos la 'X' de los paneles  */
+hnanexo-administration-mot-prescription div#motPrescriptionDetailPanel #hn-button-close span.ui-hn-icon.icon-cancel {
+  display: none;
+}

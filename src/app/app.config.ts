@@ -16,6 +16,11 @@ import { HttpTokenizerService } from './service/http.tokenizer.services';
 import { CacheHnAnexoDAOService } from './service/dao/cache-hnanexo-dao.service';
 import { SharedResourcesFhirDAOService } from './service/dao/shared-resources-fhir.dao.service';
 
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+import { TooltipModule } from 'primeng/tooltip';
+import { AdministrationVmService } from './administration/administration.vm.service';
+
 // Función para cargar los archivos de traducción
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -32,7 +37,10 @@ export const appConfig: ApplicationConfig = {
           useFactory: HttpLoaderFactory,
           deps: [HttpClient],
         },
-      })
+      }),
+      BrowserModule,
+      CommonModule,
+      TooltipModule
     ),
     LoggerService,
     LoadService,
@@ -43,7 +51,8 @@ export const appConfig: ApplicationConfig = {
     ServiceUserLogin,
     HttpTokenizerService,
     CacheHnAnexoDAOService,
-    SharedResourcesFhirDAOService
+    SharedResourcesFhirDAOService,
+    AdministrationVmService,
 
   ]
 };

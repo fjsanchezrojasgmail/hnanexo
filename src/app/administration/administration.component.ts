@@ -1,15 +1,150 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { ComponentMessages } from '../bean/i18n-bean';
+import { AdministrationVmService } from './administration.vm.service';
+import { TemplateEntity } from '@angular/compiler';
+import { Entity } from './beans/entity.bean';
+import { RouterModule } from '@angular/router';
+import { MenuComponent } from "../components/menu/menu.component";
+
 
 @Component({
-  selector: 'app-administration',
+  selector: 'hnanexo-administration',
+  standalone: true,
+  imports: [RouterModule, MenuComponent],
   templateUrl: './administration.component.html',
-  styleUrls: ['./administration.component.css']
+  styleUrls: ['./administration.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
-export class AdministrationComponent implements OnInit {
+export class AdministrationComponent  implements OnInit{
 
-  constructor() { }
+  // TRADUCCIONES
+  locale: string | undefined;
+  componentMessages: any = ComponentMessages.en;
 
-  ngOnInit() {
+  public access = [
+    'admin'
+  ];
+
+  // Declaración de los items del menú de la izquierda
+  public entities: Entity[] | undefined;
+
+  constructor(public vm: AdministrationVmService) {}
+
+  ngOnInit () {
+    this.loadEntities();
+  }
+
+  loadEntities() {
+    this.entities = [
+      {
+        id: '1',
+        label: this.getDeep(this.vm.componentMessages,'label.adm.types'),
+        routerLink: ['/administrador/type'],
+        icon: 'icon-wheelchair',
+        visible: true,
+        permissions: []
+      },
+      {
+        id: '2',
+        label: this.getDeep(this.vm.componentMessages,'label.adm.groups'),
+        routerLink: ['/administrador/group'],
+        icon: 'icon-structure-management',
+        visible: true,
+        permissions: []
+      },
+      {
+        id: '3',
+        label: this.getDeep(this.vm.componentMessages,'label.adm.subGroups'),
+        routerLink: ['/administrador/subgroup'],
+        icon: 'icon-structure-management',
+        visible: true,
+        permissions: []
+      },
+      {
+        id: '4',
+        label: this.getDeep(this.vm.componentMessages,'label.adm.products'),
+        routerLink: ['/administrador/product'],
+        icon: 'icon-procedimientos',
+        visible: true,
+        permissions: []
+      },
+      {
+        id: '5',
+        label: this.getDeep(this.vm.componentMessages,'label.adm.article'),
+        routerLink: ['/administrador/article'],
+        icon: 'icon-procedimientos',
+        visible: true,
+        permissions: []
+      },
+      {
+        id: '6',
+        label: this.getDeep(this.vm.componentMessages,'label.adm.conditions'),
+        routerLink: ['/administrador/condition'],
+        icon: 'icon-condition',
+        visible: true,
+        permissions: []
+      },
+      {
+        id: '7',
+        label: this.getDeep(this.vm.componentMessages,'label.adm.rules'),
+        routerLink: ['/administrador/rule'],
+        icon: 'icon-escalas',
+        visible: true,
+        permissions: []
+      },
+      {
+        id: '8',
+        label: this.getDeep(this.vm.componentMessages,'label.adm.constants'),
+        routerLink: ['/administrador/constant'],
+        icon: 'icon-link',
+        visible: true,
+        permissions: []
+      },
+      {
+        id: '9',
+        label: this.getDeep(this.vm.componentMessages,'label.adm.mot.presc'),
+        routerLink: ['/administrador/motPresciption'],
+        icon: 'icon-traumatological-medical-history',
+        visible: true,
+        permissions: []
+      },
+      {
+        id: '10',
+        label: this.getDeep(this.vm.componentMessages,'label.adm.blocking.reason'),
+        routerLink: ['/administrador/blocking-reason'],
+        icon: 'icon-traumatological-medical-history',
+        visible: true,
+        permissions: []
+      },
+      {
+        id: '11',
+        label: this.getDeep(this.vm.componentMessages,'label.adm.renewal.justification'),
+        routerLink: ['/administrador/renewal-justification'],
+        icon: 'icon-traumatological-medical-history',
+        visible: true,
+        permissions: []
+      },
+      {
+        id: '12',
+        label: this.getDeep(this.vm.componentMessages,'label.adm.services'),
+        routerLink: ['/administrador/service'],
+        icon: 'icon-nurse',
+        visible: true,
+        permissions: []
+      },
+      {
+        id: '13',
+        label: this.getDeep(this.vm.componentMessages,'label.adm.inspectors'),
+        routerLink: ['/administrador/inspectors'],
+        icon: 'icon-patient',
+        visible: true,
+        permissions: []
+      }
+    ];
+  }
+
+  getDeep(obj: any, path: string): any {
+    return path.split('.').reduce((o, key) => (o ? o[key] : undefined), obj);
   }
 
 }

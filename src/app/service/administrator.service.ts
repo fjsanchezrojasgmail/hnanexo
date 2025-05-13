@@ -19,7 +19,9 @@ constructor(private _loginService: LoginService,
   /** Método que indica si el usuario tiene permisos de administración en la aplicación o no */
   public canActivate() {
 
-    const sermasUser = this._cacheAnexoService.getListResources(HnanexoServiceConstants.SERMAS_LOGGED_USER);
+    //const sermasUser = this._cacheAnexoService.getListResources(HnanexoServiceConstants.SERMAS_LOGGED_USER);
+    const sermasUser = this._loginService.LoggedUser;
+    console.log("User:",this._loginService.LoggedUser);
     // Comprobamos que tengamos un usuario
     if (sermasUser) {
       // Si es usuario administrador de anexo devolvemos true

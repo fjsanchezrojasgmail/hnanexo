@@ -1,0 +1,14 @@
+
+hnanexo-administration-renewal-justification div#renewalJustificationCreatePanel,
+hnanexo-administration-renewal-justification div#renewalJustificationEditPanel,
+hnanexo-administration-renewal-justification div#renewalJustificationDetailPanel {
+  left: auto!important;
+  right: 0px;
+}
+
+/* Quitamos la 'X' de los paneles  */
+hnanexo-administration-renewal-justification div#renewalJustificationCreatePanel #hn-button-close span.ui-hn-icon.icon-cancel,
+hnanexo-administration-renewal-justification div#renewalJustificationEditPanel #hn-button-close span.ui-hn-icon.icon-cancel,
+hnanexo-administration-renewal-justification div#renewalJustificationDetailPanel #hn-button-close span.ui-hn-icon.icon-cancel {
+  display: none;
+}

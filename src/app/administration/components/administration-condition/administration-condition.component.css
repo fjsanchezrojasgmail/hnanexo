@@ -1,0 +1,20 @@
+/* Posicionar el modal delante del right panel */
+hnanexo-administration-condition #adm-condition hn-right-panel.auto-z-index div.container.hn-right-panel-form-mode,
+hnanexo-administration-condition #adm-condition hn-right-panel.auto-z-index div.container.hn-right-panel-info-mode {
+    z-index: auto;
+}
+
+hnanexo-administration-condition div#conditionCreatePanel,
+hnanexo-administration-condition div#conditionEditPanel,
+hnanexo-administration-condition div#conditionDetailPanel {
+  left: auto!important;
+  right: 0px;
+}
+
+/* Quitamos la 'X' de los paneles  */
+hnanexo-administration-condition div#conditionCreatePanel #hn-button-close span.ui-hn-icon.icon-cancel,
+hnanexo-administration-condition div#conditionEditPanel #hn-button-close span.ui-hn-icon.icon-cancel,
+hnanexo-administration-condition div#conditionDetailPanel #hn-button-close span.ui-hn-icon.icon-cancel {
+  display: none;
+}
+    

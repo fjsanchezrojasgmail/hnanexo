@@ -1,0 +1,27 @@
+<div id="adm-mot-prescription" class="general-entity-div divRelative">
+
+  <!-- List -->
+  <hnanexo-adm-mot-prescription-list
+    [urlHnConfiguration]="urlHnConfiguration"
+    [paginationTable]="paginationTable"
+    (detailMotPrescriptionEvent)="methodClickDetailMotPrescription($event)">
+  </hnanexo-adm-mot-prescription-list>
+
+  <!-- Detail panel -->
+  <hn-right-panel #motPrescriptionDetailPanel
+    [id]="'motPrescriptionDetailPanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.motPrescription']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-mot-prescription"
+    modal="true"
+    mode="info"
+    (onCloseEvent)="methodCloseDetailMotPrescription()">
+      <hnanexo-adm-mot-prescription-detail *ngIf="motPrescriptionDetailPanel.block"
+      [urlHnConfiguration]="urlHnConfiguration"
+      [motPrescription]="selectedMotPrescription"
+      (onReturnToList)="methodCloseDetailMotPrescription()">
+      </hnanexo-adm-mot-prescription-detail>
+  </hn-right-panel>
+
+</div>

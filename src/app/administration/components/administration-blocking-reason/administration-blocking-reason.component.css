@@ -1,0 +1,14 @@
+
+hnanexo-administration-blocking-reason div#blockingReasonCreatePanel,
+hnanexo-administration-blocking-reason div#blockingReasonEditPanel,
+hnanexo-administration-blocking-reason div#blockingReasonDetailPanel {
+  left: auto!important;
+  right: 0px;
+}
+
+/* Quitamos la 'X' de los paneles  */
+hnanexo-administration-blocking-reason div#blockingReasonCreatePanel #hn-button-close span.ui-hn-icon.icon-cancel,
+hnanexo-administration-blocking-reason div#blockingReasonEditPanel #hn-button-close span.ui-hn-icon.icon-cancel,
+hnanexo-administration-blocking-reason div#blockingReasonDetailPanel #hn-button-close span.ui-hn-icon.icon-cancel {
+  display: none;
+}

@@ -1,0 +1,9 @@
+hnanexo-administration-type div#typeDetailPanel {
+  left: auto!important;
+  right: 0px;
+}
+
+/* Quitamos la 'X' de los paneles  */
+hnanexo-administration-type div#typeDetailPanel #hn-button-close span.ui-hn-icon.icon-cancel {
+  display: none;
+}

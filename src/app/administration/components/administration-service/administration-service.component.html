@@ -1,0 +1,81 @@
+<div id="adm-service" class="general-entity-div divRelative">
+
+  <!-- Listado -->
+  <hnanexo-adm-service-list
+    [urlHnConfiguration]="urlHnConfiguration"
+    [paginationTable]="paginationTable"
+    [updateList]= "updateList"
+    (onCreateServiceEvent)="methodClickCreateService()"
+    (editServiceEvent)="methodClickEditService($event)"
+    (detailServiceEvent)="methodClickDetailService($event)">
+  </hnanexo-adm-service-list>
+
+    <!-- Create panel -->
+    <hn-right-panel #serviceCreatePanel
+    [id]="'serviceCreatePanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.create.service']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-service"
+    modal="true"
+    mode="info">
+      <hnanexo-adm-service-form *ngIf="serviceCreatePanel.block"
+        [urlHnConfiguration]="urlHnConfiguration"
+        (onSubmitForm)="methodOnSubmitFormCreateServicio()"
+        (onReturnToList)="methodCloseCreateService()">
+      </hnanexo-adm-service-form>
+  </hn-right-panel>
+
+  <!-- Edit panel -->
+  <hn-right-panel #serviceEditPanel
+    [id]="'serviceEditPanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.modify.service']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-service"
+    modal="true"
+    mode="info">
+      <hnanexo-adm-service-form *ngIf="serviceEditPanel.block"
+        [urlHnConfiguration]="urlHnConfiguration"
+        [service]="selectedService"
+        (onSubmitForm)="methodOnSubmitFormEditService()"
+        (onReturnToList)="methodCloseEditService()">
+      </hnanexo-adm-service-form>
+  </hn-right-panel>
+
+      <!-- Detail panel -->
+      <hn-right-panel #serviceDetailPanel
+      [id]="'serviceDetailPanel'"
+      [width]="800"
+      title="{{vm.componentMessages['label.title.detail.service']}}"
+      class="hn-right-panel-scroll panel-white-background"
+      idparent="adm-service"
+      modal="true"
+      mode="info">
+        <hnanexo-adm-service-detail *ngIf="serviceDetailPanel.block"
+        [urlHnConfiguration]="urlHnConfiguration"
+        [service]="selectedService"
+        (onReturnToList)="methodCloseDetailService()">
+        </hnanexo-adm-service-detail>
+    </hn-right-panel>
+
+    <!-- Modal que pide confirmación para cancelar la creación o modificación -->
+    <hn-dialog-component #modalCancelOperation
+    [titleHeader]="selectedService ? vm.componentMessages['label.modal.title.cancel.modification'] : vm.componentMessages['label.modal.title.cancel.creation']"
+    [width]="500"
+    [type]="dialog"
+    class="snowBackground"
+    [modal]="true"
+    (methodOnAccept)="accept()"
+    (methodOnCancel)="cancel()"
+    (methodOnHide)="cancel()"
+    [labelButtonAccept]="vm.componentMessages['label.modal.action.accept']"
+    [labelButtonCancel]="vm.componentMessages['label.modal.action.cancel']"
+    [iconAccept]="iconAccept"
+    [iconCancel]="iconCancel">
+    <div>
+      <p class="hn20v2 text-justify">{{selectedService ? vm.componentMessages['label.modal.text.cancel.modification'] : vm.componentMessages['label.modal.text.cancel.creation']}}</p>
+      <span class="font-weight-bold">{{vm.componentMessages['label.modal.confirmation.message']}}</span>
+    </div>
+    </hn-dialog-component>
+</div>

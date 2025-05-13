@@ -1,5 +1,5 @@
 <!-- application loader -->
-<div id="loader" style="z-index: 10000;">
+<div *ngIf="!showContent" id="loader" style="z-index: 10000;">
 	<div id="loader-panel">
 		<div class="loading-img"></div>
 		<label>{{'label.loading' | translate }}</label>

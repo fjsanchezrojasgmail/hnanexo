@@ -1,0 +1,87 @@
+<div id="adm-product" class="general-entity-div divRelative">
+
+  <!-- Listado -->
+  <hnanexo-adm-product-list
+    [urlHnConfiguration]="urlHnConfiguration"
+    [paginationTable]="paginationTable"
+    [updateList]= "updateList"
+    (onCreateProductEvent)="methodClickCreateProduct()"
+    (editProductEvent)="methodClickEditProduct($event)"
+    (detailProductEvent)="methodClickDetailProduct($event)">
+  </hnanexo-adm-product-list>
+
+  <!-- Create panel -->
+  <hn-right-panel #productCreatePanel
+    [id]="'productCreatePanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.create.product']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-product"
+    modal="true"
+    mode="info">
+      <hnanexo-adm-product-form *ngIf="productCreatePanel.block"
+        [urlHnreq]="urlHnreq"
+        [urlHnConfiguration]="urlHnConfiguration"
+        [tamMaxUploadIMG_MB]="tamMaxUploadIMG_MB"
+        (onSubmitForm)="methodOnSubmitFormCreateProduct()"
+        (onReturnToList)="methodCloseCreateProduct()">
+      </hnanexo-adm-product-form>
+  </hn-right-panel>
+
+  <!-- Edit panel -->
+  <hn-right-panel #productEditPanel
+    [id]="'productEditPanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.modify.product']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-product"
+    modal="true"
+    mode="info">
+      <hnanexo-adm-product-form *ngIf="productEditPanel.block"
+        [urlHnConfiguration]="urlHnConfiguration"
+        [product]="selectedProduct"
+        [urlHnreq]="urlHnreq"
+        [tamMaxUploadIMG_MB]="tamMaxUploadIMG_MB"
+        (onSubmitForm)="methodOnSubmitFormEditProduct()"
+        (onReturnToList)="methodCloseEditProduct()">
+      </hnanexo-adm-product-form>
+  </hn-right-panel>
+
+  <!-- Detail panel -->
+  <hn-right-panel #productDetailPanel
+    [id]="'productDetailPanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.product']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-product"
+    modal="true"
+    mode="info">
+      <hnanexo-adm-product-detail *ngIf="productDetailPanel.block"
+      [urlHnConfiguration]="urlHnConfiguration"
+      [urlHnreq]="urlHnreq"
+      [product]="selectedProduct"
+      (onReturnToList)="methodCloseDetailProduct()">
+      </hnanexo-adm-product-detail>
+  </hn-right-panel>
+
+  <!-- Modal que pide confirmación para cancelar la creación o modificación -->
+  <hn-dialog-component #modalCancelOperation
+    [titleHeader]="selectedProduct ? vm.componentMessages['label.modal.title.cancel.modification'] : vm.componentMessages['label.modal.title.cancel.creation']"
+    [width]="500"
+    [type]="dialog"
+    class="snowBackground"
+    [modal]="true"
+    (methodOnAccept)="accept()"
+    (methodOnCancel)="cancel()"
+    (methodOnHide)="cancel()"
+    [labelButtonAccept]="vm.componentMessages['label.modal.action.accept']"
+    [labelButtonCancel]="vm.componentMessages['label.modal.action.cancel']"
+    [iconAccept]="'ui-hn-icon icon-accept'"
+    [iconCancel]="'ui-hn-icon icon-cancel'">
+      <div>
+        <p class="hn20v2 text-justify">{{selectedProduct ? vm.componentMessages['label.modal.text.cancel.modification'] : vm.componentMessages['label.modal.text.cancel.creation']}}</p>
+        <span class="font-weight-bold">{{vm.componentMessages['label.modal.confirmation.message']}}</span>
+      </div>
+  </hn-dialog-component>
+
+</div>

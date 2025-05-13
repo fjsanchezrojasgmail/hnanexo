@@ -1,0 +1,14 @@
+
+hnanexo-administration-article div#articleCreatePanel,
+hnanexo-administration-article div#articleEditPanel,
+hnanexo-administration-article div#articleDetailPanel {
+  left: auto!important;
+  right: 0px;
+}
+
+/* Quitamos la 'X' de los paneles  */
+hnanexo-administration-article div#articleCreatePanel #hn-button-close span.ui-hn-icon.icon-cancel,
+hnanexo-administration-article div#articleEditPanel #hn-button-close span.ui-hn-icon.icon-cancel,
+hnanexo-administration-article div#articleDetailPanel #hn-button-close span.ui-hn-icon.icon-cancel {
+  display: none;
+}

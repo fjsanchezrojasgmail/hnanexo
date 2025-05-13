@@ -170,7 +170,6 @@ export class MainComponent implements OnInit {
         if (this.locale.startsWith('es')) {
             this.componentMessages = ComponentMessages.es;
         }
-        console.log("LoginService.LoggedUser:", this._loginService.LoggedUser);
         if (this._loginService.LoggedUser) {
             // Se realiza suscripción al getHnProperties para que no inicie la carga
             // del accountmanager hasta que no tenga los parametros en el propertiesService
@@ -184,6 +183,8 @@ export class MainComponent implements OnInit {
                     // Verificamos los recursos compartidos
                     this._sharedResourcesFhir.verifySharedResourcesFhir(this._tokenizerService.getToken(), this.urlHnreq!,
                         this.daysUpdateResourcesFhir!, hnanexoConstants.APP_NAME);
+
+
                     // Cuando la verificacion ha sido la correcta
                     this._sharedResourcesFhir.dataLoadedVerifyResources$.subscribe(
                         () => {
@@ -381,6 +382,10 @@ export class MainComponent implements OnInit {
         let url = this._propertiesVMService.getValuePropertieByName(Constants.URL_HNAUT);
         url += Constants.URL_ACCOUNT_MANAGER;
         this.accountManagerUrl = this.domSanitizerService.bypassSecurityTrustResourceUrl(url);
+
+        setTimeout(() => {
+          this.showContent =  true;
+        }, 2000);
     }
 
     isloaded(): boolean {

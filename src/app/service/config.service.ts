@@ -61,4 +61,15 @@ export class ConfigService {
     return this._data?.daysUpdateResourcesFhir;
   }
 
+  public get paginationTable(){
+    return this._data?.paginationTable;
+  }
+  public get urlOntology(){
+    return this._data?.urlOntology;
+  }
+
+  public get tamMaxUploadIMG_MB(){
+    return this._data?.tamMaxUploadIMG_MB;
+  }
+
 }

@@ -1,0 +1,13 @@
+hnanexo-administration-service div#serviceCreatePanel,
+hnanexo-administration-service div#serviceEditPanel,
+hnanexo-administration-service div#serviceDetailPanel {
+  left: auto!important;
+  right: 0px;
+}
+
+/* Quitamos la 'X' de los paneles  */
+hnanexo-administration-service div#serviceCreatePanel #hn-button-close span.ui-hn-icon.icon-cancel,
+hnanexo-administration-service div#serviceEditPanel #hn-button-close span.ui-hn-icon.icon-cancel,
+hnanexo-administration-service div#serviceDetailPanel #hn-button-close span.ui-hn-icon.icon-cancel {
+  display: none;
+}

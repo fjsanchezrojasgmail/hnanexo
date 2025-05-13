@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 import { AdministrationComponent } from './administration/administration.component';
+import { administrationRoutes } from './administration/administration.routes';
+import { AdministrationTemplateComponent } from './administration/components/administration-template/administration-template.component';
 
 /*export const routes: Routes = [
 
@@ -19,6 +21,17 @@ import { AdministrationComponent } from './administration/administration.compone
 
 export const routes: Routes = [
   {
-    path: 'administrador', component: AdministrationComponent
-  }
+    path: '', redirectTo: 'administrador', pathMatch: 'full',
+  },
+  {
+    path: 'administrador', component: AdministrationComponent,
+    children: [{
+      path: '', redirectTo: 'template', pathMatch: 'full',
+    }, {
+      path: 'template', component: AdministrationTemplateComponent
+    }]
+  },
+
 ]
+
+

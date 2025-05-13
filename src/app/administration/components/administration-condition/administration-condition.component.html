@@ -1,0 +1,85 @@
+<div id="adm-condition" class="general-entity-div divRelative">
+
+  <!-- Listado -->
+  <hnanexo-adm-condition-list
+    [urlHnConfiguration]="urlHnConfiguration"
+    [paginationTable]="paginationTable"
+    [updateList]= "updateList"
+    (onCreateConditionEvent)="methodClickCreateCondition()"
+    (editConditionEvent)="methodClickEditCondition($event)"
+    (detailConditionEvent)="methodClickDetailCondition($event)">
+  </hnanexo-adm-condition-list>
+
+  <!-- Create panel -->
+  <hn-right-panel #conditionCreatePanel
+    [id]="'conditionCreatePanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.create.condition']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-condition"
+    modal="false"
+    mode="info"
+    [ngClass]="{'auto-z-index':openModal}">
+  <hnanexo-adm-condition-form *ngIf="conditionCreatePanel.block"
+    [urlHnConfiguration]="urlHnConfiguration"
+    (onSubmitForm)="methodOnSubmitFormCreateCondition()"
+    (onReturnToList)="methodCloseCreateCondition()"
+    (openModal)="onOffModal($event)">
+  </hnanexo-adm-condition-form>
+  </hn-right-panel>
+
+  <!-- Edit panel -->
+  <hn-right-panel #conditionEditPanel
+    [id]="'conditionEditPanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.modify.condition']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-condition"
+    modal="true"
+    mode="info"
+    [ngClass]="{'auto-z-index':openModal}">
+      <hnanexo-adm-condition-form *ngIf="conditionEditPanel.block"
+        [urlHnConfiguration]="urlHnConfiguration"
+        [condition]="selectedCondition"
+        (onSubmitForm)="methodOnSubmitFormEditCondition()"
+        (onReturnToList)="methodCloseEditCondition()"
+        (openModal)="onOffModal($event)">
+      </hnanexo-adm-condition-form>
+  </hn-right-panel>
+
+    <!-- Detail panel -->
+    <hn-right-panel #conditionDetailPanel
+    [id]="'conditionDetailPanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.condition']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-condition"
+    modal="true"
+    mode="info">
+      <hnanexo-adm-condition-detail *ngIf="conditionDetailPanel.block"
+      [urlHnConfiguration]="urlHnConfiguration"
+      [condition]="selectedCondition"
+      (onReturnToList)="methodCloseDetailCondition()">
+      </hnanexo-adm-condition-detail>
+    </hn-right-panel>
+
+    <!-- Modal que se abre cuando se hace clic en calcelar el formulario -->
+    <hn-dialog-component #modalCancelOperation
+    [titleHeader]="selectedCondition ? vm.componentMessages['label.modal.title.cancel.modification'] : vm.componentMessages['label.modal.title.cancel.creation']"
+    [width]="500"
+    [type]="'dialog'"
+    class="snowBackground"
+    [modal]="true"
+    (methodOnAccept)="accept()"
+    (methodOnCancel)="cancel()"
+    (methodOnHide)="cancel()"
+    [labelButtonAccept]="vm.componentMessages['label.modal.action.accept']"
+    [labelButtonCancel]="vm.componentMessages['label.modal.action.cancel']"
+    [iconAccept]="'ui-hn-icon icon-accept'"
+    [iconCancel]="'ui-hn-icon icon-cancel'">
+    <div>
+    <p class="hn20v2 text-justify">{{selectedCondition ? vm.componentMessages['label.modal.text.cancel.modification'] : vm.componentMessages['label.modal.text.cancel.creation']}}</p>
+    <span><strong>{{vm.componentMessages['label.modal.confirmation.message']}}</strong></span>
+    </div>
+    </hn-dialog-component>
+  </div>

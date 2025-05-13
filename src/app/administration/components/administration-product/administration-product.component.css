@@ -1,0 +1,14 @@
+
+hnanexo-administration-product div#productCreatePanel,
+hnanexo-administration-product div#productEditPanel,
+hnanexo-administration-product div#productDetailPanel {
+  left: auto!important;
+  right: 0px;
+}
+
+/* Quitamos la 'X' de los paneles  */
+hnanexo-administration-product div#productCreatePanel #hn-button-close span.ui-hn-icon.icon-cancel,
+hnanexo-administration-product div#productEditPanel #hn-button-close span.ui-hn-icon.icon-cancel,
+hnanexo-administration-product div#productDetailPanel #hn-button-close span.ui-hn-icon.icon-cancel {
+  display: none;
+}

@@ -1,3 +1,12 @@
-<p>
-  administration works!
-</p>
+<div id="app-body" class="hn-body absolute">
+  <div class="display-flex">
+    <!-- Panel izquierdo menú  -->
+    <div class="div-left">
+      <hn-left-collapsable-menu-component [items]="entities" [access]="access"></hn-left-collapsable-menu-component>
+    </div>
+    <!-- Panel derecho tablas administrador  -->
+    <div class="div-right">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

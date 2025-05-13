@@ -1,0 +1,14 @@
+
+hnanexo-administration-constant div#constantCreatePanel,
+hnanexo-administration-constant div#constantEditPanel,
+hnanexo-administration-constant div#constantDetailPanel {
+  left: auto!important;
+  right: 0px;
+}
+
+/* Quitamos la 'X' de los paneles  */
+hnanexo-administration-constant div#constantCreatePanel #hn-button-close span.ui-hn-icon.icon-cancel,
+hnanexo-administration-constant div#constantEditPanel #hn-button-close span.ui-hn-icon.icon-cancel,
+hnanexo-administration-constant div#constantDetailPanel #hn-button-close span.ui-hn-icon.icon-cancel {
+  display: none;
+}

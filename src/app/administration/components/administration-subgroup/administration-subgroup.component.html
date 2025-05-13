@@ -1,0 +1,82 @@
+<div id="adm-subgroup" class="general-entity-div divRelative">
+
+  <!-- Listado -->
+  <hnanexo-adm-subgroup-list
+    [urlHnConfiguration]="urlHnConfiguration"
+    [urlOntology]="urlOntology"
+    [paginationTable]="paginationTable"
+    [updateList]= "updateList"
+    (onCreateSubgroupEvent)="methodClickCreateSubgroup()"
+    (editSubgroupEvent)="methodClickEditSubgroup($event)"
+    (detailSubgroupEvent)="methodClickDetailSubgroup($event)">
+  </hnanexo-adm-subgroup-list>
+
+  <!-- Create panel -->
+  <hn-right-panel #subgroupCreatePanel
+    [id]="'subgroupCreatePanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.create.subgroup']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-subgroup"
+    modal="true"
+    mode="info">
+  <hnanexo-adm-subgroup-form *ngIf="subgroupCreatePanel.block"
+    [urlHnConfiguration]="urlHnConfiguration"
+    (onSubmitForm)="methodOnSubmitFormCreateSubgroup()"
+    (onReturnToList)="methodCloseCreateSubgroup()">
+  </hnanexo-adm-subgroup-form>
+  </hn-right-panel>
+
+  <!-- Edit panel -->
+  <hn-right-panel #subgroupEditPanel
+    [id]="'subgroupEditPanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.modify.subgroup']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-subgroup"
+    modal="true"
+    mode="info">
+      <hnanexo-adm-subgroup-form *ngIf="subgroupEditPanel.block"
+        [urlHnConfiguration]="urlHnConfiguration"
+        [subgroup]="selectedSubgroup"
+        (onSubmitForm)="methodOnSubmitFormEditSubgroup()"
+        (onReturnToList)="methodCloseEditSubgroup()">
+      </hnanexo-adm-subgroup-form>
+  </hn-right-panel>
+
+    <!-- Detail panel -->
+    <hn-right-panel #subgroupDetailPanel
+    [id]="'subgroupDetailPanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.subgroup']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-subgroup"
+    modal="true"
+    mode="info">
+      <hnanexo-adm-subgroup-detail *ngIf="subgroupDetailPanel.block"
+      [urlHnConfiguration]="urlHnConfiguration"
+      [subgroup]="selectedSubgroup"
+      (onReturnToList)="methodCloseDetailSubgroup()">
+      </hnanexo-adm-subgroup-detail>
+  </hn-right-panel>
+
+    <!-- Modal que pide confirmación para cancelar la creación o modificación -->
+    <hn-dialog-component #modalCancelOperation
+    [titleHeader]="selectedSubgroup ? vm.componentMessages['label.modal.title.cancel.modification'] : vm.componentMessages['label.modal.title.cancel.creation']"
+    [width]="500"
+    [type]="dialog"
+    class="snowBackground"
+    [modal]="true"
+    (methodOnAccept)="accept()"
+    (methodOnCancel)="cancel()"
+    (methodOnHide)="cancel()"
+    [labelButtonAccept]="vm.componentMessages['label.modal.action.accept']"
+    [labelButtonCancel]="vm.componentMessages['label.modal.action.cancel']"
+    [iconAccept]="iconAccept"
+    [iconCancel]="iconCancel">
+    <div>
+      <p class="hn20v2 text-justify">{{selectedSubgroup ? vm.componentMessages['label.modal.text.cancel.modification'] : vm.componentMessages['label.modal.text.cancel.creation']}}</p>
+      <span class="font-weight-bold">{{vm.componentMessages['label.modal.confirmation.message']}}</span>
+    </div>
+    </hn-dialog-component>
+</div>

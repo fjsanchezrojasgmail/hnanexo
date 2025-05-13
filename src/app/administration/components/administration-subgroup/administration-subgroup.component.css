@@ -1,0 +1,14 @@
+
+hnanexo-administration-subgroup div#subgroupCreatePanel,
+hnanexo-administration-subgroup div#subgroupEditPanel,
+hnanexo-administration-subgroup div#subgroupDetailPanel {
+  left: auto!important;
+  right: 0px;
+}
+
+/* Quitamos la 'X' de los paneles  */
+hnanexo-administration-subgroup div#subgroupCreatePanel #hn-button-close span.ui-hn-icon.icon-cancel,
+hnanexo-administration-subgroup div#subgroupEditPanel #hn-button-close span.ui-hn-icon.icon-cancel,
+hnanexo-administration-subgroup div#subgroupDetailPanel #hn-button-close span.ui-hn-icon.icon-cancel {
+  display: none;
+}

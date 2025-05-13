@@ -1,0 +1,83 @@
+<div id="adm-group" class="general-entity-div divRelative">
+
+  <!-- Listado -->
+  <hnanexo-adm-group-list
+    [urlHnConfiguration]="urlHnConfiguration"
+    [paginationTable]="paginationTable"
+    [updateList]= "updateList"
+    (detailGroupEvent)="methodClickDetailGroup($event)"
+    (editGroupEvent)="methodClickEditGroup($event)"
+    (onCreateGroupEvent)="methodClickCreateGroup()">
+  </hnanexo-adm-group-list>
+
+   <!-- Detail panel -->
+   <hn-right-panel #groupDetailPanel
+   [id]="'groupDetailPanel'"
+   [width]="800"
+   title="{{vm.componentMessages['label.title.detail.group']}}"
+   class="hn-right-panel-scroll panel-white-background"
+   idparent="adm-group"
+   modal="true"
+   mode="info"
+   (onCloseEvent)="methodCloseDetailGroup()">
+     <hnanexo-adm-group-detail *ngIf="groupDetailPanel.block"
+     [urlHnConfiguration]="urlHnConfiguration"
+     [group]="selectedGroup"
+     (onReturnToList)="methodCloseDetailGroup()">
+     </hnanexo-adm-group-detail>
+  </hn-right-panel>
+
+  <!-- Edit panel -->
+  <hn-right-panel #groupEditPanel
+    [id]="'groupEditPanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.modify.group']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-group"
+    modal="true"
+    mode="info">
+      <hnanexo-adm-group-form *ngIf="groupEditPanel.block"
+        [urlHnConfiguration]="urlHnConfiguration"
+        [group]="selectedGroup"
+        (onSubmitForm)="methodOnSubmitFormEditGroup()"
+        (onReturnToList)="methodCloseEditGroup()">
+      </hnanexo-adm-group-form>
+  </hn-right-panel>
+
+  <!-- Create panel -->
+  <hn-right-panel #groupCreatePanel
+    [id]="'groupCreatePanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.create.group']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-group"
+    modal="true"
+    mode="info">
+      <hnanexo-adm-group-form *ngIf="groupCreatePanel.block"
+        [urlHnConfiguration]="urlHnConfiguration"
+        (onSubmitForm)="methodOnSubmitFormCreateGroup()"
+        (onReturnToList)="methodCloseCreateGroup()">
+      </hnanexo-adm-group-form>
+  </hn-right-panel>
+
+
+    <!-- Modal que se abre cuando se hace clic en calcelar el formulario -->
+    <hn-dialog-component #modalCancelOperation
+    [titleHeader]="selectedGroup ? vm.componentMessages['label.modal.title.cancel.modification'] : vm.componentMessages['label.modal.title.cancel.creation']"
+    [width]="500"
+    [type]="'dialog'"
+    class="snowBackground"
+    [modal]="true"
+    (methodOnAccept)="accept()"
+    (methodOnCancel)="cancel()"
+    (methodOnHide)="cancel()"
+    [labelButtonAccept]="vm.componentMessages['label.modal.action.accept']"
+    [labelButtonCancel]="vm.componentMessages['label.modal.action.cancel']"
+    [iconAccept]="'ui-hn-icon icon-accept'"
+    [iconCancel]="'ui-hn-icon icon-cancel'">
+    <div>
+    <p class="hn20v2 text-justify">{{selectedGroup ? vm.componentMessages['label.modal.text.cancel.modification'] : vm.componentMessages['label.modal.text.cancel.creation']}}</p>
+    <span><strong>{{vm.componentMessages['label.modal.confirmation.message']}}</strong></span>
+    </div>
+    </hn-dialog-component>
+</div>

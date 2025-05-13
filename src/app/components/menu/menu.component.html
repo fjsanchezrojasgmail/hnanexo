@@ -1,0 +1,44 @@
+<div class="height-100 display-flex">
+  <div (transitionend)="endTransaction()" class="height-100 hn-border-right"
+      [ngClass]="{'hn-open-panel': openPanel, 'hn-closed-panel': !openPanel, 'hn-over-content':showOverContent,
+       'hn-closed-animation-end':closePanelRetardoAnimacion}">
+
+      <!-- Boton open/closed-->
+      <div class="hn-title-panel hn-row-height silver-background hn-border-bottom hn-border width-100"
+      [ngClass]="{'display-flex-center-initial': openPanel}">
+          <span class="hn-label-open" *ngIf="openPanelRetardoAnimacion">
+              <span>{{titleCollapsablePanel}}</span>
+          </span>
+          <div id="collapsable_button_display" class="hn-button-display" (click)="onOpenClosedPanel()" *ngIf="showButtonOpenClosed">
+              <span class="ui-hn-icon hn-icon-highlight hn-icon-16"
+                  [ngClass]="{'icon-angle-left': openPanel, 'icon-angle-right': !openPanel}">
+              </span>
+          </div>
+          <span class="hn-label-closed" *ngIf="!openPanel && !openPanelRetardoAnimacion">
+              <span>{{titleCollapsablePanel}}</span>
+          </span>
+      </div>
+      <!-- Este ngIf se añade porque de no estar daba problemas en IE. Y de todas forams
+      no tiene sentido que los filtros estén en el DOM si no se van a usar -->
+      <ng-content *ngIf="openPanel" select="[filter]"></ng-content>
+  </div>
+
+  <!-- Este div vacio es para que se guarde el espacio que hay cuando el panel está abierto,
+  ya que al ponerse posicionamiento absoluto se deja de hacer calculo -->
+  <div *ngIf="(openPanel || !closePanelRetardoAnimacion) && showOverContent" class="hn-closed-panel"></div>
+
+  <div class="height-100 flex-1">
+      <!--ng-content select="[list]"></!--ng-content-->
+      <!-- Dentro del panel colapsable -->
+<div *ngIf="openPanel" class="menu-items">
+  <ul class="hn-menu">
+    <li *ngFor="let item of items" class="hn-menu-item" [routerLink]="item.routerLink">
+      <span class="ui-hn-icon" [ngClass]="item.icon"></span>
+      {{ item.label }}
+    </li>
+  </ul>
+</div>
+
+  </div>
+
+</div>

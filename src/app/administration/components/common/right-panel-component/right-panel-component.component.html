@@ -1,0 +1,73 @@
+<!--div id="div_blocked" *ngIf="block"></!--div>
+<div id="{{id}}" class="container {{mode === FORM_MODE ? 'hn-right-panel-form-mode' : mode === DEFAULT_MODE ? 'hn-right-panel-info-mode' : ''}}">
+    <div id="hn-button-close">
+        <div class="title hn-text-ellipsis">
+            <span class="{{titleClass}}"  pTooltip="{{title}}"  tooltipStyleClass="word-break"  tooltipPosition="bottom">{{title}}</span>
+            <span (click)="onClose()" class="ui-hn-icon icon-cancel"></span>
+        </div>
+        <div #ellipsisContainer (mouseenter)="mouseEnter()" class="right-panel-ellipsis subtitle">
+                <span #ellipsisSpan class="{{subtitleClass}}" pTooltip="{{subtitle}}" tooltipPosition="left" tooltipStyleClass="word-break" [tooltipDisabled]="tooltip">{{subtitle}}</span>
+        </div>
+    </div>
+    <div #container class="containerContent" [ngClass]="{'hasTitle': title}">
+        <ng-content>
+        </ng-content>
+    </div>
+</div>
+<!-- Overlay modal (click para cerrar) -->
+<div
+  class="overlay"
+  *ngIf="isOpen && modal"
+  @fadeInOut
+  (click)="onClose()"
+></div>
+
+<!-- Panel lateral -->
+<div
+  [@slideInOut]="isOpen ? 'in' : 'out'"
+  [id]="id"
+  class="container"
+  [ngClass]="{
+    'hn-right-panel-form-mode': mode === FORM_MODE,
+    'hn-right-panel-info-mode': mode === DEFAULT_MODE
+  }"
+  [style.width]="width"
+>
+  <!-- Botón de cierre y título -->
+  <div id="hn-button-close">
+    <div class="title hn-text-ellipsis">
+      <span
+        [class]="titleClass"
+        pTooltip="{{ title }}"
+        tooltipStyleClass="word-break"
+        tooltipPosition="bottom"
+      >
+        {{ title }}
+      </span>
+      <span (click)="onClose()" class="ui-hn-icon icon-cancel"></span>
+    </div>
+
+    <!-- Subtítulo -->
+    <div
+      #ellipsisContainer
+      (mouseenter)="mouseEnter()"
+      class="right-panel-ellipsis subtitle"
+    >
+      <span
+        #ellipsisSpan
+        [class]="subtitleClass"
+        pTooltip="{{ subtitle }}"
+        tooltipPosition="left"
+        tooltipStyleClass="word-break"
+        [tooltipDisabled]="tooltip"
+      >
+        {{ subtitle }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Contenido del panel -->
+  <div #container class="containerContent" [ngClass]="{ hasTitle: title }">
+    <ng-content></ng-content>
+  </div>
+</div>

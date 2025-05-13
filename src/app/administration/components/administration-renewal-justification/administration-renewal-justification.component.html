@@ -1,0 +1,82 @@
+<div id="adm-renewal-justification" class="general-entity-div divRelative">
+
+  <!-- Listado -->
+  <hnanexo-adm-renewal-justification-list
+    [urlHnConfiguration]="urlHnConfiguration"
+    [urlOntology]="urlOntology"
+    [paginationTable]="paginationTable"
+    [updateList]= "updateList"
+    (onCreateEvent)="methodClickCreate()"
+    (editEvent)="methodClickEdit($event)"
+    (detailEvent)="methodClickDetail($event)">
+  </hnanexo-adm-renewal-justification-list>
+
+  <!-- Create panel -->
+  <hn-right-panel #renewalJustificationCreatePanel
+    [id]="'renewalJustificationCreatePanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.create.renewal.justification']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-renewal-justification"
+    modal="true"
+    mode="info">
+  <hnanexo-adm-renewal-justification-form *ngIf="renewalJustificationCreatePanel.block"
+    [urlHnConfiguration]="urlHnConfiguration"
+    (onSubmitForm)="methodOnSubmitFormCreate()"
+    (onReturnToList)="methodCloseCreate()">
+  </hnanexo-adm-renewal-justification-form>
+  </hn-right-panel>
+
+  <!-- Edit panel -->
+  <hn-right-panel #renewalJustificationEditPanel
+    [id]="'renewalJustificationEditPanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.modify.renewal.justification']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-renewal-justification"
+    modal="true"
+    mode="info">
+      <hnanexo-adm-renewal-justification-form *ngIf="renewalJustificationEditPanel.block"
+        [urlHnConfiguration]="urlHnConfiguration"
+        [dataItem]="selectedItem"
+        (onSubmitForm)="methodOnSubmitFormEdit()"
+        (onReturnToList)="methodCloseEdit()">
+      </hnanexo-adm-renewal-justification-form>
+  </hn-right-panel>
+
+    <!-- Detail panel -->
+    <hn-right-panel #renewalJustificationDetailPanel
+    [id]="'renewalJustificationDetailPanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.renewal.justification']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-renewal-justification"
+    modal="true"
+    mode="info">
+      <hnanexo-adm-renewal-justification-detail *ngIf="renewalJustificationDetailPanel.block"
+      [urlHnConfiguration]="urlHnConfiguration"
+      [dataItem]="selectedItem"
+      (onReturnToList)="methodCloseDetail()">
+      </hnanexo-adm-renewal-justification-detail>
+  </hn-right-panel>
+
+    <!-- Modal que pide confirmación para cancelar la creación o modificación -->
+    <hn-dialog-component #modalCancelOperation
+    [titleHeader]="selectedItem ? vm.componentMessages['label.modal.title.cancel.modification'] : vm.componentMessages['label.modal.title.cancel.creation']"
+    [width]="500"
+    [type]="dialog"
+    class="snowBackground"
+    [modal]="true"
+    (methodOnAccept)="accept()"
+    (methodOnCancel)="cancel()"
+    (methodOnHide)="cancel()"
+    [labelButtonAccept]="vm.componentMessages['label.modal.action.accept']"
+    [labelButtonCancel]="vm.componentMessages['label.modal.action.cancel']"
+    [iconAccept]="iconAccept"
+    [iconCancel]="iconCancel">
+    <div>
+      <p class="hn20v2 text-justify">{{selectedItem ? vm.componentMessages['label.modal.text.cancel.modification'] : vm.componentMessages['label.modal.text.cancel.creation']}}</p>
+      <span class="font-weight-bold">{{vm.componentMessages['label.modal.confirmation.message']}}</span>
+    </div>
+    </hn-dialog-component>
+</div>

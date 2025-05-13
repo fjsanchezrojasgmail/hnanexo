@@ -1,0 +1,159 @@
+hnanexo-administration #app-body.absolute {
+  left: 0;
+  right: 0;
+  position: absolute;
+  height: calc(100vh - 40px);
+}
+
+hnanexo-administration #app-body.absolute > div.display-flex {
+  height: 100%;
+}
+
+hnanexo-administration #app-body .div-right {
+  width: 100%;
+}
+
+hnanexo-administration #app-body .div-left .narrow-scrollbar {
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Habilitar scroll en el left panel */
+hnanexo-administration #app-body .div-left .left-collapsable-menu-fixed {
+  overflow-y: auto;
+  max-height: calc(100vh - 40px);
+  overflow-x: hidden;
+}
+/** Estilos scroll en Google Chrome **/
+/* Ocultar scroll */
+hnanexo-administration #app-body .div-left .left-collapsable-menu-fixed::-webkit-scrollbar {
+  visibility: hidden;
+}
+/* Cambiar color y hacer visible el scroll al hacer hover */
+hnanexo-administration #app-body .div-left .left-collapsable-menu-fixed::-webkit-scrollbar-thumb:hover {
+  background-color: #8a949e;
+  outline: 1px solid slategrey;
+  visibility: visible;
+}
+/** Estilos scroll en IE **/
+hnanexo-administration #app-body .div-left .left-collapsable-menu-fixed {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+/* INICIO ICONOS */
+/* Iconos */
+hnanexo-administration .ui-hn-icon.icon-catalog:before{
+content: '&';
+}
+hnanexo-administration .ui-hn-icon.icon-condition:before{
+content: "\E093";
+}
+hnanexo-administration .ui-hn-icon.icon-wheelchair:before {
+content:"\E029";
+}
+/* FIN ICONOS */
+hnanexo-administration .general-entity-div.divRelative {
+height: calc(100vh - 40px);
+}
+/*Quitamos el scroll global del right panel*/
+hnanexo-administration .general-entity-div.divRelative .containerContent {
+overflow: hidden;
+}
+
+
+/**MIRAR SI BORRAR*/
+div#bg-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+div#bg-image::after {
+  content: '';
+  background-size: cover;
+  background: -webkit-linear-gradient( #d6dfe1, #c0cdcf); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(#d6dfe1, #c0cdcf); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(#d6dfe1, #c0cdcf); /* Firefox 3.6 - 15 */
+  background: linear-gradient(#d6dfe1, #c0cdcf); /* Estandar（ Se pone en el último） */
+  opacity: 1;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: 0;
+}
+
+div#bg-layer {
+  width: 100%;
+  height: 100%;
+  background: rgba(246,246,246,0.3);
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+#kc-logo-wrapper {
+  height: 28px;
+  background-position: center;
+  background-size: contain;
+}
+#kc-logo {
+  border-top: 1px solid rgba(124, 136, 138, 0.8);
+  margin-top: 30px;
+  padding-top: 20px;
+}
+
+#kc-content-wrapper {
+  background-color: rgba(255,255,255,0.2);
+  padding: 50px 75px;
+  border: 1px solid rgba(115,123,124,0.2);
+  border-radius: 10px;
+  color: #666;
+  position: absolute;
+  top: 30%;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  width: 420px;
+  height: 390px;
+}
+
+#kc-access-denied-message {
+  text-align: center;
+}
+
+#kc-access-denied-message {
+  font-size: 100px;
+}
+
+h3 {
+  display: block;
+  color:#49585A;
+  opacity: 0.7;
+  font-size: 20px;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  font-weight: bold;
+}
+
+p.instruction {
+  color: #333333;
+  font-size: 14px;
+  display: block;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+}
+
+.ui-hn-icon.access-denied-icon:before {
+  content:"p";
+  font-size: 100px;
+  color:#49585A;
+}

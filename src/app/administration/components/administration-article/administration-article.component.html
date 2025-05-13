@@ -1,0 +1,82 @@
+<div id="adm-article" class="general-entity-div divRelative">
+
+  <!-- Listado -->
+  <hnanexo-adm-article-list
+    [urlHnConfiguration]="urlHnConfiguration"
+    [urlOntology]="urlOntology"
+    [paginationTable]="paginationTable"
+    [updateList]= "updateList"
+    (onCreateEvent)="methodClickCreate()"
+    (editEvent)="methodClickEdit($event)"
+    (detailEvent)="methodClickDetail($event)">
+  </hnanexo-adm-article-list>
+
+  <!-- Create panel -->
+  <hn-right-panel #articleCreatePanel
+    [id]="'articleCreatePanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.create.article']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-article"
+    modal="true"
+    mode="info">
+  <hnanexo-adm-article-form *ngIf="articleCreatePanel.block"
+    [urlHnConfiguration]="urlHnConfiguration"
+    (onSubmitForm)="methodOnSubmitFormCreate()"
+    (onReturnToList)="methodCloseCreate()">
+  </hnanexo-adm-article-form>
+  </hn-right-panel>
+
+  <!-- Edit panel -->
+  <hn-right-panel #articleEditPanel
+    [id]="'articleEditPanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.modify.article']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-article"
+    modal="true"
+    mode="info">
+      <hnanexo-adm-article-form *ngIf="articleEditPanel.block"
+        [urlHnConfiguration]="urlHnConfiguration"
+        [dataItem]="selectedItem"
+        (onSubmitForm)="methodOnSubmitFormEdit()"
+        (onReturnToList)="methodCloseEdit()">
+      </hnanexo-adm-article-form>
+  </hn-right-panel>
+
+    <!-- Detail panel -->
+    <hn-right-panel #articleDetailPanel
+    [id]="'articleDetailPanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.article']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-article"
+    modal="true"
+    mode="info">
+      <hnanexo-adm-article-detail *ngIf="articleDetailPanel.block"
+      [urlHnConfiguration]="urlHnConfiguration"
+      [dataItem]="selectedItem"
+      (onReturnToList)="methodCloseDetail()">
+      </hnanexo-adm-article-detail>
+  </hn-right-panel>
+
+    <!-- Modal que pide confirmación para cancelar la creación o modificación -->
+    <hn-dialog-component #modalCancelOperation
+    [titleHeader]="selectedItem ? vm.componentMessages['label.modal.title.cancel.modification'] : vm.componentMessages['label.modal.title.cancel.creation']"
+    [width]="500"
+    [type]="dialog"
+    class="snowBackground"
+    [modal]="true"
+    (methodOnAccept)="accept()"
+    (methodOnCancel)="cancel()"
+    (methodOnHide)="cancel()"
+    [labelButtonAccept]="vm.componentMessages['label.modal.action.accept']"
+    [labelButtonCancel]="vm.componentMessages['label.modal.action.cancel']"
+    [iconAccept]="iconAccept"
+    [iconCancel]="iconCancel">
+    <div>
+      <p class="hn20v2 text-justify">{{selectedItem ? vm.componentMessages['label.modal.text.cancel.modification'] : vm.componentMessages['label.modal.text.cancel.creation']}}</p>
+      <span class="font-weight-bold">{{vm.componentMessages['label.modal.confirmation.message']}}</span>
+    </div>
+    </hn-dialog-component>
+</div>

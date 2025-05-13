@@ -1,0 +1,139 @@
+hn-collapsable {
+  width: 100%;
+}
+hn-collapsable div.hn-closed-panel.hn-over-content.hn-closed-animation-end,
+hn-collapsable .display-flex-center-initial {
+  display: flex;
+  align-items: center;
+  justify-content: initial;
+}
+
+/** Estilos para dar ancho al panel abierto o cerrado */
+hn-collapsable .hn-closed-panel{
+  width: 45px;
+  transition: width 0.3s;
+}
+
+hn-collapsable .hn-open-panel {
+  width: 385px;
+  transition: width 0.3s;
+}
+
+hn-collapsable div.hn-closed-panel.hn-over-content:not(.hn-closed-animation-end),
+hn-collapsable div.hn-open-panel.hn-over-content {
+  position: absolute;
+  z-index: 100;
+  background: #fff;
+
+}
+
+/** Fin Estilos para dar ancho al panel abierto o cerrado */
+
+/** Estilos del titulo **/
+hn-collapsable .hn-open-panel .hn-title-panel {
+  padding: .5em 1em .3em;
+}
+
+hn-collapsable .hn-closed-panel .hn-title-panel {
+  height: 100%;
+}
+/** Fin Estilos del titulo **/
+
+/** Estilos para el texto horizontal o vertical segun este abierto o cerrado **/
+hn-collapsable .hn-open-panel .hn-title-panel .hn-label-open span {
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 30px;
+  margin: 0;
+  display: inline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+hn-collapsable .hn-closed-panel .hn-title-panel .hn-label-closed span {
+  left: 37px;
+  position: relative;
+  top: 10px;
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+  -webkit-transform-origin: left top 0;
+  transform-origin: left top 0;
+  width: 500px;
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 30px;
+  margin: 0 32px 0 0;
+  display: block;
+}
+/** Fin Estilos para el texto horizontal o vertical segun este abierto o cerrado **/
+
+/** Estilos del boton para abrir y cerrar el panel **/
+hn-collapsable .hn-title-panel .hn-button-display {
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+hn-collapsable .hn-title-panel .hn-button-display span {
+  border: 2px solid #008da2;
+  border-radius: 25px;
+}
+
+hn-collapsable .hn-open-panel .hn-title-panel .hn-button-display span {
+  padding: 4px;
+  padding-left: 2px;
+  padding-right: 5px;
+}
+
+hn-collapsable .hn-closed-panel .hn-title-panel .hn-button-display span {
+  padding: 4px;
+  padding-right: 3px;
+  padding-left: 4px;
+}
+
+hn-collapsable .hn-closed-panel .hn-title-panel .hn-button-display {
+  padding-left: 9px;
+  padding-top: 6px;
+}
+/** Fin Estilos del boton para abrir y cerrar el panel **/
+
+/** Estilos para los iconos **/
+
+.hn-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hn-menu-item {
+  padding: 25px;
+  cursor: pointer;
+}
+
+.hn-menu-item:hover {
+  background-color: #9b9898;
+}
+
+.hn-over-content {
+  position: absolute;
+  z-index: 1000;
+  background-color: white;
+}
+
+.ui-hn-icon {
+
+  font-style: normal;
+  font-weight: normal;
+  display: inline-block;
+  text-align: center;
+  line-height: 1;
+  vertical-align: middle;
+  width: 1em;
+  height: 1em;
+  font-size: 16px; /* Ajusta según necesidad */
+  color: inherit; /* Hereda el color del texto o puedes fijarlo */
+  margin-right: 8px; /* Espacio a la derecha si va junto a texto */
+}
+
+

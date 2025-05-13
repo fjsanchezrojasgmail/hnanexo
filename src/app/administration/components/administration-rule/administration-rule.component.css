@@ -1,0 +1,15 @@
+
+
+hnanexo-administration-rule div#ruleCreatePanel,
+hnanexo-administration-rule div#ruleEditPanel,
+hnanexo-administration-rule div#ruleDetailPanel {
+  left: auto!important;
+  right: 0px;
+}
+
+/* Quitamos la 'X' de los paneles  */
+hnanexo-administration-rule div#ruleCreatePanel #hn-button-close span.ui-hn-icon.icon-cancel,
+hnanexo-administration-rule div#ruleEditPanel #hn-button-close span.ui-hn-icon.icon-cancel,
+hnanexo-administration-rule div#ruleDetailPanel #hn-button-close span.ui-hn-icon.icon-cancel {
+  display: none;
+}

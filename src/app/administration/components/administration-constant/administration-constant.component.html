@@ -1,0 +1,84 @@
+<div id="adm-constant" class="general-entity-div divRelative">
+
+  <!-- List -->
+  <hnanexo-adm-constant-list
+    [urlHnConfiguration]="urlHnConfiguration"
+    [paginationTable]="paginationTable"
+    [updateList]= "updateList"
+    (onCreateConstantEvent)="methodClickCreateConstant()"
+    (editConstantEvent)="methodClickEditConstant($event)"
+    (detailConstantEvent)="methodClickDetailConstant($event)">
+  </hnanexo-adm-constant-list>
+
+  <!-- Create panel -->
+  <hn-right-panel #constantCreatePanel
+    [id]="'constantCreatePanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.create.constant']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-constant"
+    modal="true"
+    mode="info"
+    (onCloseEvent)="methodCloseCreateConstant()">
+      <hnanexo-adm-constant-form *ngIf="constantCreatePanel.block"
+        [urlHnConfiguration]="urlHnConfiguration"
+        (onSubmitForm)="methodOnSubmitFormCreateConstant()"
+        (onReturnToList)="methodCloseCreateConstant()">
+      </hnanexo-adm-constant-form>
+  </hn-right-panel>
+
+  <!-- Edit panel -->
+  <hn-right-panel #constantEditPanel
+    [id]="'constantEditPanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.modify.constant']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-constant"
+    modal="true"
+    mode="info"
+    (onCloseEvent)="methodCloseEditConstant()">
+      <hnanexo-adm-constant-form  *ngIf="constantEditPanel.block"
+        [urlHnConfiguration]="urlHnConfiguration"
+        [constant]="selectedConstant"
+        (onSubmitForm)="methodOnSubmitFormEditConstant()"
+        (onReturnToList)="methodCloseEditConstant()">
+      </hnanexo-adm-constant-form >
+  </hn-right-panel>
+
+  <!-- Detail panel -->
+  <hn-right-panel #constantDetailPanel
+    [id]="'constantDetailPanel'"
+    [width]="800"
+    title="{{vm.componentMessages['label.title.detail.constant']}}"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-constant"
+    modal="true"
+    mode="info"
+    (onCloseEvent)="methodCloseDetailConstant()">
+      <hnanexo-adm-constant-detail *ngIf="constantDetailPanel.block"
+      [urlHnConfiguration]="urlHnConfiguration"
+      [constant]="selectedConstant"
+      (onReturnToList)="methodCloseDetailConstant()">
+      </hnanexo-adm-constant-detail>
+  </hn-right-panel>
+
+  <!-- Modal que se abre cuando se hace clic en calcelar el formulario -->
+  <hn-dialog-component #modalCancelOperation
+  [titleHeader]="selectedConstant ? vm.componentMessages['label.modal.title.cancel.modification'] : vm.componentMessages['label.modal.title.cancel.creation']"
+  [width]="500"
+  [type]="dialog"
+  class="snowBackground"
+  [modal]="true"
+  (methodOnAccept)="accept()"
+  (methodOnCancel)="cancel()"
+  (methodOnHide)="cancel()"
+  [labelButtonAccept]="vm.componentMessages['label.modal.action.accept']"
+  [labelButtonCancel]="vm.componentMessages['label.modal.action.cancel']"
+  [iconAccept]="iconAccept"
+  [iconCancel]="iconCancel">
+    <div>
+      <p class="hn20v2 text-justify">{{selectedConstant ? vm.componentMessages['label.modal.text.cancel.modification'] : vm.componentMessages['label.modal.text.cancel.creation']}}</p>
+      <span class="font-weight-bold">{{vm.componentMessages['label.modal.confirmation.message']}}</span>
+    </div>
+  </hn-dialog-component>
+</div>

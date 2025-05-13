@@ -1,0 +1,28 @@
+<div id="adm-type" class="general-entity-div divRelative">
+
+  <!-- Listado -->
+  <hnanexo-adm-type-list
+    [urlHnConfiguration]="urlHnConfiguration"
+    [paginationTable]="paginationTable"
+    (detailTypeEvent)="methodClickDetailType($event)">
+  </hnanexo-adm-type-list>
+
+  <!-- Detail panel -->
+  <hn-right-panel-component #typeDetailPanel
+    [id]="'typeDetailPanel'"
+    [width]="800"
+    [title]="title"
+    class="hn-right-panel-scroll panel-white-background"
+    idparent="adm-type"
+    modal="true"
+    mode="info"
+    (onCloseEvent)="methodCloseDetailType()">
+      <!--hnanexo-adm-type-detail *ngIf="typeDetailPanel.block"
+      [urlHnConfiguration]="urlHnConfiguration"
+      [type]="selectedType"
+      (onReturnToList)="methodCloseDetailType()">
+      </hnanexo-adm-type-detail-->
+  </hn-right-panel-component>
+
+
+</div>

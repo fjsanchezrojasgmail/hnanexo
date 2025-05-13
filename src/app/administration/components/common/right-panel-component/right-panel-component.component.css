@@ -1,0 +1,147 @@
+/*  MODE FORM  */
+
+hn-right-panel > div.container.hn-right-panel-form-mode div#hn-button-close,
+hn-right-panel > div.container.hn-right-panel-form-mode {
+  background-color: #F6F6F6 !important;
+}
+
+
+/*  MODE INFO  */
+
+hn-right-panel > div.container.hn-right-panel-info-mode div#hn-button-close,
+hn-right-panel > div.container.hn-right-panel-info-mode {
+  background-color: #ffffff !important;
+}
+
+
+/*  COMUNES PARA INFO Y FORM */
+hn-right-panel > div.container.hn-right-panel-form-mode,
+hn-right-panel > div.container.hn-right-panel-info-mode {
+  padding: 0px;
+  top: 0;
+  position: absolute;
+  width: 500px;
+  height: calc(100% + 43px);
+  display: none;
+  z-index: 99;
+  left: calc(100% + 1px);
+  border: 1px solid #D8D8D8;
+  box-shadow: 2px 2px 12px #999;
+  -webkit-box-shadow: 2px 2px 12px #999;
+  -moz-box-shadow: 2px 2px 12px #999;
+  filter: shadow(color=#999999, direction=135, strength=12);
+}
+
+/* Se quita porque se tiene que gestionar desde cada caso, y no puede aplicarse de forma general (tema scrolls) */
+/*hn-right-panel > div.container.hn-right-panel-form-mode .containerContent,
+hn-right-panel > div.container.hn-right-panel-info-mode .containerContent {
+  padding: 0 40px 20px 40px;
+}
+
+hn-right-panel > div.container.hn-right-panel-form-mode .containerContent.hasTitle,
+hn-right-panel > div.container.hn-right-panel-info-mode .containerContent.hasTitle {
+  padding-top: 60px;
+} */
+
+hn-right-panel > div.container.hn-right-panel-form-mode div#hn-button-close,
+hn-right-panel > div.container.hn-right-panel-info-mode div#hn-button-close {
+    padding: 20px 40px 20px 40px;
+}
+
+/* hn-right-panel > div.container.hn-right-panel-form-mode #hn-button-close span,
+hn-right-panel > div.container.hn-right-panel-info-mode #hn-button-close span {
+  color: #999999;
+  font-size: 18px;
+  text-transform: uppercase;
+} */
+
+hn-right-panel > div.container.hn-right-panel-form-mode #hn-button-close span.icon-cancel,
+hn-right-panel > div.container.hn-right-panel-info-mode #hn-button-close span.icon-cancel {
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+
+/* DEFAULT - A ELIMINAR CUANDO PASEMOS TODOS LOS PANELES DERECHOS A NUEVO ESTILO */
+hn-right-panel > div.container:not(.hn-right-panel-form-mode):not(.hn-right-panel-info-mode) {
+  background-color: #F8F8F8 !important;
+  padding: 0px;
+  top:0;
+  position: absolute;
+  width: 500px;
+  height: calc(100% + 43px);
+  display: none;
+  z-index: 99;
+  left: calc(100% + 1px);
+  border: 1px solid #D8D8D8;
+  box-shadow: 2px 2px 12px #999;
+  -webkit-box-shadow: 2px 2px 12px #999;
+  -moz-box-shadow: 2px 2px 12px #999;
+  filter: shadow(color=#999999, direction=135, strength=12);
+}
+
+hn-right-panel > div.container:not(.hn-right-panel-form-mode):not(.hn-right-panel-info-mode) #hn-button-close {
+  padding: 6px;
+  margin-bottom: 0;
+  background: #008da2;
+}
+
+hn-right-panel > div.container:not(.hn-right-panel-form-mode):not(.hn-right-panel-info-mode) .containerContent {
+  margin-left:20px;
+}
+
+hn-right-panel > div.container.hn-right-panel-info-mode .containerContent {
+  height: 100%;
+}
+
+hn-right-panel > div.container:not(.hn-right-panel-form-mode):not(.hn-right-panel-info-mode) #hn-button-close span.ui-hn-icon.icon-cancel {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+}
+
+hn-right-panel > div.container:not(.hn-right-panel-form-mode):not(.hn-right-panel-info-mode) #hn-button-close span {
+  color: #fff;
+}
+
+/*  CUMUNES */
+#hn-button-close span.icon-cancel:before {
+  font-family: FontAwesome;
+  content: "\F00D";
+}
+
+
+/* Styles taken from ui-widget-overlay of primeng */
+#div_blocked {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #FFFFFF;
+  opacity: 0.5;
+  z-index: 98;
+  top: 0;
+  left: 0;
+}
+
+.div_blocked_relative {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #FFFFFF;
+  z-index: 98;
+  top: 0;
+  left: 0;
+}
+
+hn-right-panel #manage-account-right-panel {
+  top: 40px !important;
+}
+
+hn-right-panel .right-panel-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+

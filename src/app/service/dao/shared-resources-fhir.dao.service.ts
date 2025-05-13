@@ -46,6 +46,7 @@ export class SharedResourcesFhirDAOService extends GenericService<any> implement
   // Aquí implementas los métodos reales
   verifySharedResourcesFhir(token: Promise<string>, urlFhir: string, daysUpdateResourcesFhir: number, idModule?: string): void {
     // implementación pendiente
+    this.dataLoadedVerifyResources$.next(true);
   }
 
   private existsOrganizationCenter(payload: any) {
