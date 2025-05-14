@@ -32,8 +32,9 @@
       <!-- Dentro del panel colapsable -->
 <div *ngIf="openPanel" class="menu-items">
   <ul class="hn-menu">
-    <li *ngFor="let item of items" class="hn-menu-item" [routerLink]="item.routerLink">
-      <span class="ui-hn-icon" [ngClass]="item.icon"></span>
+    <li *ngFor="let item of items"
+      class="hn-menu-item" [routerLink]="item.routerLink">
+      <span class="ui-hn-icon" [ngClass]="item.icon" ></span>
       {{ item.label }}
     </li>
   </ul>

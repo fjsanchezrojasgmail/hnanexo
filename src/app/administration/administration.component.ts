@@ -38,7 +38,7 @@ export class AdministrationComponent  implements OnInit{
     this.entities = [
       {
         id: '1',
-        label: this.getDeep(this.vm.componentMessages,'label.adm.types'),
+        label: this.getTraduction(ComponentMessages.es,'label.adm.types'),
         routerLink: ['/administrador/type'],
         icon: 'icon-wheelchair',
         visible: true,
@@ -46,7 +46,7 @@ export class AdministrationComponent  implements OnInit{
       },
       {
         id: '2',
-        label: this.getDeep(this.vm.componentMessages,'label.adm.groups'),
+        label: this.getTraduction(ComponentMessages.es,'label.adm.groups'),
         routerLink: ['/administrador/group'],
         icon: 'icon-structure-management',
         visible: true,
@@ -54,7 +54,7 @@ export class AdministrationComponent  implements OnInit{
       },
       {
         id: '3',
-        label: this.getDeep(this.vm.componentMessages,'label.adm.subGroups'),
+        label: this.getTraduction(ComponentMessages.es,'label.adm.subGroups'),
         routerLink: ['/administrador/subgroup'],
         icon: 'icon-structure-management',
         visible: true,
@@ -62,7 +62,7 @@ export class AdministrationComponent  implements OnInit{
       },
       {
         id: '4',
-        label: this.getDeep(this.vm.componentMessages,'label.adm.products'),
+        label: this.getTraduction(ComponentMessages.es,'label.adm.products'),
         routerLink: ['/administrador/product'],
         icon: 'icon-procedimientos',
         visible: true,
@@ -70,7 +70,7 @@ export class AdministrationComponent  implements OnInit{
       },
       {
         id: '5',
-        label: this.getDeep(this.vm.componentMessages,'label.adm.article'),
+        label: this.getTraduction(ComponentMessages.es,'label.adm.article'),
         routerLink: ['/administrador/article'],
         icon: 'icon-procedimientos',
         visible: true,
@@ -78,7 +78,7 @@ export class AdministrationComponent  implements OnInit{
       },
       {
         id: '6',
-        label: this.getDeep(this.vm.componentMessages,'label.adm.conditions'),
+        label: this.getTraduction(ComponentMessages.es,'label.adm.conditions'),
         routerLink: ['/administrador/condition'],
         icon: 'icon-condition',
         visible: true,
@@ -86,7 +86,7 @@ export class AdministrationComponent  implements OnInit{
       },
       {
         id: '7',
-        label: this.getDeep(this.vm.componentMessages,'label.adm.rules'),
+        label: this.getTraduction(ComponentMessages.es,'label.adm.rules'),
         routerLink: ['/administrador/rule'],
         icon: 'icon-escalas',
         visible: true,
@@ -94,7 +94,7 @@ export class AdministrationComponent  implements OnInit{
       },
       {
         id: '8',
-        label: this.getDeep(this.vm.componentMessages,'label.adm.constants'),
+        label: this.getTraduction(ComponentMessages.es,'label.adm.constants'),
         routerLink: ['/administrador/constant'],
         icon: 'icon-link',
         visible: true,
@@ -102,7 +102,7 @@ export class AdministrationComponent  implements OnInit{
       },
       {
         id: '9',
-        label: this.getDeep(this.vm.componentMessages,'label.adm.mot.presc'),
+        label: this.getTraduction(ComponentMessages.es,'label.adm.mot.presc'),
         routerLink: ['/administrador/motPresciption'],
         icon: 'icon-traumatological-medical-history',
         visible: true,
@@ -110,7 +110,7 @@ export class AdministrationComponent  implements OnInit{
       },
       {
         id: '10',
-        label: this.getDeep(this.vm.componentMessages,'label.adm.blocking.reason'),
+        label: this.getTraduction(ComponentMessages.es,'label.adm.blocking.reason'),
         routerLink: ['/administrador/blocking-reason'],
         icon: 'icon-traumatological-medical-history',
         visible: true,
@@ -118,7 +118,7 @@ export class AdministrationComponent  implements OnInit{
       },
       {
         id: '11',
-        label: this.getDeep(this.vm.componentMessages,'label.adm.renewal.justification'),
+        label: this.getTraduction(ComponentMessages.es,'label.adm.renewal.justification'),
         routerLink: ['/administrador/renewal-justification'],
         icon: 'icon-traumatological-medical-history',
         visible: true,
@@ -126,7 +126,7 @@ export class AdministrationComponent  implements OnInit{
       },
       {
         id: '12',
-        label: this.getDeep(this.vm.componentMessages,'label.adm.services'),
+        label: this.getTraduction(ComponentMessages.es,'label.adm.services'),
         routerLink: ['/administrador/service'],
         icon: 'icon-nurse',
         visible: true,
@@ -134,7 +134,7 @@ export class AdministrationComponent  implements OnInit{
       },
       {
         id: '13',
-        label: this.getDeep(this.vm.componentMessages,'label.adm.inspectors'),
+        label: this.getTraduction(ComponentMessages.es,'label.adm.inspectors'),
         routerLink: ['/administrador/inspectors'],
         icon: 'icon-patient',
         visible: true,
@@ -143,8 +143,8 @@ export class AdministrationComponent  implements OnInit{
     ];
   }
 
-  getDeep(obj: any, path: string): any {
-    return path.split('.').reduce((o, key) => (o ? o[key] : undefined), obj);
+  getTraduction(messages: { [key: string]: string }, path: string): string {
+    return messages[path] || path;
   }
 
 }

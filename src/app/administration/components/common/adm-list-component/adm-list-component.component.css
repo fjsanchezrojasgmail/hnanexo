@@ -1,0 +1,26 @@
+/* Estilos correspondientes al listado */
+hnanexo-adm-list {
+  height: 100%;
+}
+
+hnanexo-adm-list p-paginator {
+  position: relative;
+}
+
+hnanexo-adm-list hn-combo-component
+.hn-combo-component-dropdown.ui-dropdown
+.ui-dropdown-panel
+.ui-dropdown-items
+.ui-dropdown-item span {
+  color: #333;
+}
+
+hnanexo-adm-group-list .hn-split-button-wrapper {
+  left: auto!important;
+  right: 0px;
+}
+
+hnanexo-adm-group-list .hn-split-button-icono-dropdown{
+  line-height: 12px;
+}
+/* Fin de estilos del listado */

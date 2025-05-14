@@ -2,12 +2,13 @@ import { Component, Input, OnInit, EventEmitter, OnChanges, SimpleChanges } from
 import { Entity } from '../../administration/beans/entity.bean';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { TooltipModule } from 'primeng/tooltip';
 
 
 @Component({
   selector: 'hn-left-collapsable-menu-component',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TooltipModule],
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
@@ -27,6 +28,7 @@ export class MenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log("Entities: ", this.items);
   }
 
 

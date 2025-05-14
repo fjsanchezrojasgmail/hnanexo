@@ -15,9 +15,10 @@ import {
   animate,
   transition
 } from '@angular/animations';
-import { TooltipModule } from 'primeng/primeng';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
+import { TooltipModule } from 'primeng/tooltip';
 
 
 

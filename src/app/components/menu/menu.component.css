@@ -107,8 +107,11 @@ hn-collapsable .hn-closed-panel .hn-title-panel .hn-button-display {
 }
 
 .hn-menu-item {
-  padding: 25px;
+  border-style:groove;
+  text-align:center;
+  padding: 15px;
   cursor: pointer;
+  background-color: #c2bfbf;
 }
 
 .hn-menu-item:hover {
@@ -125,6 +128,7 @@ hn-collapsable .hn-closed-panel .hn-title-panel .hn-button-display {
 
   font-style: normal;
   font-weight: normal;
+  font-size: 30px;
   display: inline-block;
   text-align: center;
   line-height: 1;
