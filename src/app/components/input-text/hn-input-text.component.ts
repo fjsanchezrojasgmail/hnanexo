@@ -1,9 +1,10 @@
-import { ElementRef, EventEmitter, OnChanges, OnInit, Renderer2, SimpleChanges, DoCheck, AfterViewInit, Component, Input, forwardRef } from '@angular/core';
+import { ElementRef, EventEmitter,
+  OnChanges, OnInit, Renderer2, SimpleChanges,
+  DoCheck, AfterViewInit, Component, Input, forwardRef } from '@angular/core';
 import { HnNgmodel } from '../model/hn-ngmodel';
 import { HnButtonComponent } from '../button/hn-button-component.component';
 import { FormsModule, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
-export const CUSTOM_INPUT_TEXT_CONTROL_VALUE_ACCESSOR: any = '';
 
 @Component({
   selector: 'hn-input-text-component',

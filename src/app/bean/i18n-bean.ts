@@ -253,4 +253,6 @@ export class ComponentMessages {
         'label.error.create.encounter': 'An error has occurred when creating the meeting between the patient and the professional. Contact your system administrator.',
         'label.service.no.find.patient': 'The requested patient has not been found. Contact your system administrator.'
       };
+
+
 }

@@ -4,19 +4,41 @@ import { Component, OnInit, ViewEncapsulation, Input, ViewChild, Output, EventEm
 import { AdmListComponentService } from './adm-list-component.service';
 import { ListsDropdownAnexo } from '../../../../bean/hnanexo-components-constants.bean';
 
-import { TableModule } from 'primeng/table';
+import { Table,TableModule } from 'primeng/table';
 import { ComponentMessages } from '../../../../bean/i18n-bean';
 import { AdmGroupRS } from '../../../beans/admGroupRS.bean';
 
 import { State } from '../../../beans/state.bean';
 import { CommonModule } from '@angular/common';
 import { HnInputTextComponent } from '../../../../components/input-text/hn-input-text.component';
+import { FormsModule } from '@angular/forms';
+import { HnComboComponent } from '../../../../components/combo/hn-combo.component';
+import { HnButtonComponent } from '../../../../components/button/hn-button-component.component';
+import { HnSplitButtonComponent } from '../../../../components/split-button/split-button.component';
+import { HnItemSplitButtonComponent } from '../../../../components/item-split-button/item-split-button.component';
+import { AnexoHNHeaderComponent } from '../../../../components/header/anexo-hn-header-component';
+import { AnexoHnMessageComponent } from '../../../../components/anexo-message/anexo-message.component';
 
+export type tableCols = {
 
+  'field': string,
+  'header': string
+
+}
 @Component({
   selector: 'hnanexo-adm-list-component',
   standalone: true,
-  imports: [CommonModule,TableModule,HnInputTextComponent],
+  imports: [
+    FormsModule,
+    CommonModule,
+    TableModule,
+    HnInputTextComponent,
+    HnComboComponent,
+    HnButtonComponent,
+    HnSplitButtonComponent,
+    HnItemSplitButtonComponent,
+    AnexoHnMessageComponent
+  ],
   templateUrl: './adm-list-component.component.html',
   styleUrls: ['./adm-list-component.component.css']
 })
@@ -36,14 +58,12 @@ export class AdmListComponentComponent implements OnInit,OnChanges {
 
 
 
-  @ViewChild('dt') dt!: TableModule;
+  @ViewChild('dt') dt!: Table;
 
-  cols: {
-    'field': string,
-    'header': string
-  }[] | undefined; // columnas de la tabla
+  cols: tableCols[] | undefined; // columnas de la tabla
   states: State[] = []; // Estados que pueden darse
   admUtil: AdmUtil | undefined; // Propiedad en la que se va a declarar la clase util AdmUtil
+
 
   //Estilo de icono de busqueda de los filtros
   codeSearchicon: string | null = "ui-hn-icon icon-search";
@@ -142,8 +162,26 @@ export class AdmListComponentComponent implements OnInit,OnChanges {
     }
   }
 
+  onFilterInput(event: Event, col: tableCols, value: string) {
+    const input = event.target as HTMLInputElement;
+    this.dt.filter(input.value, col.field, value);
+  }
+
   getTraduction(messages: { [key: string]: string }, path: string): string {
     return messages[path] || path;
+  }
+
+  getTraductMessage(path: string): string {
+    return (ComponentMessages.es as { [key: string]: string })[path] || path;
+  }
+
+  getTypeProductLabel(code: string): string {
+    return AdmUtil.getLabelOfValueInCombo(code, this.admListService.types);
+  }
+
+  getElementsPerPages(dt: Table, textOf: string): string {
+    const traduction = this.getTraduction(ComponentMessages.es,textOf)
+    return AdmUtil.elementsPerPages(dt,traduction, this.paginationTable!);
   }
 
 }

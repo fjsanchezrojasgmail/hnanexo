@@ -1,3 +1,34 @@
-<p>
-  input-text works!
-</p>
+<hn-label-component [label]="label" [labelBold]="labelBold" [infoMessage]="infoMessage" [errorMessage]="errorMessage" [messageError]="messageError"
+    [required]="required" [icon]="iconLabel"></hn-label-component>
+<ng-container *ngIf="!inputNumberIE">
+
+    <input [ngClass]="{'read-only-input': disabled || readonly}" placeholder="{{disabled && !readonly ? '' : placeHolder}}" (keypress)="keypress($event)" (paste)="onPaste($event)"
+        (keyup)="keyup($event)" (focus)="focus()" (blur)="blur()" type="{{type}}" step="{{step}}" max="{{max}}"
+        min="{{min}}" pInputText [(ngModel)]="value" [disabled]="disabled" [title]="tooltip ? tooltip : ''" [maxLength]="maxLength" pTooltip="{{ttTooltip}}"
+        tooltipPosition="{{ttPosition}}" [escape]="ttEscape" [tooltipDisabled]="ttDisabled" (input)="onInput($event)" autocomplete="{{autocomplete}}"
+        (ngModelChange)="onChange($event)" [readonly]="readonly"
+    />
+
+
+</ng-container>
+
+<div *ngIf="inputNumberIE" class="inputNumberDiv">
+    <input (keypress)="keypress($event)" (keyup)="keyup($event)" (focus)="focus()" (blur)="blur()" (ngModelChange)="onChange($event)" (paste)="onPaste($event)"
+        step="{{step}}" max="{{max}}" min="{{min}}" pInputText [(ngModel)]="value" [disabled]="disabled" title="{{tooltip ? tooltip : ''}}">
+    <button class="addArrowButton fa fa-chevron-up" (click)="add()"></button>
+    <button class="reduceArrowButton fa fa-chevron-down" (click)="reduce()"></button>
+</div>
+
+<span *ngIf="icon" class="{{icon}} icon-right"></span>
+
+<hn-button-component #buttonInputText
+    *ngIf="iconButtonRight"
+    class="button-input-text {{labelButtonRight ? 'button-with-text' : ''}}"
+    mainButton="true"
+    (method)="emitOnClickButtonRight()"
+    [disabled]="disabledButtonRight"
+    [icon]="iconButtonRight"
+    [tooltip]="tooltipButtonRight"
+    [label]="labelButtonRight">
+</hn-button-component>
+

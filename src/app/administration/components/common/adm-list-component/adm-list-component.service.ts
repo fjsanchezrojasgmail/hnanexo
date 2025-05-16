@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
+import { State } from '../../../beans/state.bean';
+import { ComponentMessages } from '../../../../bean/i18n-bean';
+
 
 
 @Injectable({providedIn: 'root'})
 export class AdmListComponentService {
 
+  public componentMessages: ComponentMessages = ComponentMessages.es;
   url: string | undefined;
   listing: any[] = [];
+  types: State[] = [];
+  error: boolean = false;
 
 
   constructor() { }
@@ -25,6 +31,7 @@ import { IAdmTypeHnAnexoDAOService } from '@sacyl/hnanexo-services/build/service
 import { CacheHnAnexoDAOService } from '@sacyl/hnanexo-services/build/service/dao/cache-hnanexo-dao.service';
 import { CacheDropdownLists } from '@sacyl/hnanexo-services/build/bean/hnanexo-service-constants';
 import { AdmTypeRS } from '@sacyl/hnanexo-services/build/bean/rs/adm-type.bean';
+import { ComponentMessages } from '../../../../../../../hnanexo-components/ts/hnanexo-components/bean/i18n-bean';
 
 
 @Injectable()

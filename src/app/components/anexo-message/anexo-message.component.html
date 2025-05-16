@@ -1,0 +1,16 @@
+<div class="hn-messages">
+  <div [hidden]="severity !== 'error'" class="hn-messages-info">
+    <ul>
+
+        <span class="hn-messages-info-summary">{{ messageTitle }} : {{ messageText }}</span>
+
+    </ul>
+  </div>
+  <div [hidden]="severity === 'error'" class="hn-messages-error">
+    <ul>
+
+        <span class="hn-messages-error-summary">{{ messageTitle }} : {{ messageText }}</span>
+
+    </ul>
+  </div>
+</div>

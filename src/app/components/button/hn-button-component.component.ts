@@ -11,6 +11,9 @@ export class HnButtonComponent implements OnInit {
 
    @Input() label: string | undefined;
    @Input() type: string | undefined;
+   @Input() mainButton: boolean | undefined;
+
+   tooltip: string = '';
 
   constructor() { }
 

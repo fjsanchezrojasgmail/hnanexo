@@ -50,10 +50,9 @@
             [(ngModel)]="codeValue"
             [icon]="codeSearchicon"
             (methodOnKeyup)="onChangeFilterCode()"
-            (input)="dt.filter($event.target.value, col.field, 'contains')">
+            (input)="onFilterInput($event,col.field,'contains')">
           </hn-input-text-component>
         </th>
-
         <!-- Descripción -->
         <th *ngSwitchCase="'description'">
           <hn-input-text-component
@@ -61,7 +60,7 @@
             [(ngModel)]="descriptionValue"
             [icon]="descriptionSearchicon"
             (methodOnKeyup)="onChangeFilterDescription()"
-            (input)="dt.filter($event.target.value, col.field, 'contains')">
+            (input)="onFilterInput($event,col.field,'contains')">
           </hn-input-text-component>
         </th>
 
@@ -69,8 +68,8 @@
         <th *ngSwitchCase="'typeProduct'" class="ov-visible">
           <hn-combo-component
             name="type"
-            [options]="vm.types"
-            (methodOnChange)="dt.filter($event.value, col.field, 'equals')">
+            [options]="admListService.types"
+            (methodOnChange)="onFilterInput($event,col.field,'equals')">
           </hn-combo-component>
         </th>
 
@@ -79,7 +78,7 @@
           <hn-combo-component
             name="state"
             [options]="states"
-            (methodOnChange)="dt.filter($event.value, col.field, 'equals')">
+            (methodOnChange)="onFilterInput($event,col.field,'equals')">
           </hn-combo-component>
         </th>
 
@@ -99,14 +98,14 @@
 
         <!-- En el caso de que sea la columna typeProduct -->
         <td *ngSwitchCase="'typeProduct'" class="text-justify" (click)="onActionDetail(rowData)">
-          <span>{{AdmUtil.getLabelOfValueInCombo(rowData[col.field], vm.types)}}</span>
+          <span>{{ getTypeProductLabel(rowData[col.field]) }}</span>
         </td>
 
         <!-- En el caso de que sea la columna state mostramos el componente switch -->
         <td *ngSwitchCase="'state'" class="hn-width-column-status" (click)="onActionDetail(rowData)">
           <hn-switch-component
-            labelOn = "{{vm.componentMessages['label.adm.table.state.active']}}"
-            labelOff = "{{vm.componentMessages['label.adm.table.state.pasive']}}"
+            labelOn = "getTraduction(admListService.componentMessages,'label.adm.table.state.active')"
+            labelOff = "getTraduction(admListService.componentMessages['label.adm.table.state.pasive')"
             [(ngModel)] = "rowData[col.field]"
             [disabled]="true">
           </hn-switch-component>
@@ -114,14 +113,14 @@
 
         <!-- Acciones -->
         <td *ngSwitchCase="'actions'" class="hn-width-column-action cursor-default">
-          <hn-split-button-component tooltip="{{vm.componentMessages['label.adm.table.more.actions']}}">
+          <hn-split-button-component tooltip="getTraduction(admListService.componentMessages,'label.adm.table.more.actions')">
 
             <!-- Botón de consultar -->
-            <hn-item-split-button-component  [default]="true" label="{{vm.componentMessages['label.actions.detail']}}" classIcono="ui-hn-icon icon-view" (action)="onActionDetail(rowData)">
+            <hn-item-split-button-component  [default]="true" label="getTraduction(admListService.componentMessages,'label.actions.detail')" classIcono="ui-hn-icon icon-view" (action)="onActionDetail(rowData)">
             </hn-item-split-button-component>
 
             <!-- Botón de modificar -->
-            <hn-item-split-button-component label="{{vm.componentMessages['label.actions.edit']}}" classIcono="ui-hn-icon icon-adjustable-wrench" (action)="onActionEdit(rowData)">
+            <hn-item-split-button-component label="getTraduction(admListService.componentMessages,'label.actions.edit')" classIcono="ui-hn-icon icon-adjustable-wrench" (action)="onActionEdit(rowData)">
             </hn-item-split-button-component>
           </hn-split-button-component>
         </td>
@@ -136,11 +135,14 @@
 
   <ng-template pTemplate="paginatorright">
     <div class="hn-list-menu-action silver-background head-container">
-        <span class="numPage hn-without-last-update hn-without-refresh" *ngIf="vm.listing.length > 0">{{AdmUtil.elementsPerPages(dt, vm.componentMessages['label.of'], paginationTable)}}</span>
+        <span class="numPage hn-without-last-update hn-without-refresh"
+          *ngIf="admListService.listing.length > 0">
+          {{ getElementsPerPages(dt,'label.of') }}
+        </span>
 
           <!-- Botón nuevo grupo -->
-          <hn-button-component class="hn-button-text-bold" tooltip="{{vm.componentMessages['label.button.create.group']}}"
-             type="button" [mainButton]="true" label="{{vm.componentMessages['label.button.create.group']}}"
+          <hn-button-component class="hn-button-text-bold" tooltip="getTraduction(admListService.componentMessages,'label.button.create.group')"
+             type="button" [mainButton]="true" label="getTraduction(admListService.componentMessages,'label.button.create.group')"
             icon="ui-hn-icon icon-add" (click)="openCreateDetail()">
       </hn-button-component>
     </div>
@@ -150,16 +152,17 @@
     <tr class="non-selectable">
         <td colspan="3">
             <!-- Mensaje sin resultados-->
-            <anexo-hn-message *ngIf="!vm.error"
+            <anexo-hn-message *ngIf="!admListService.error"
             [severity] = "'info'"
-            [messageTitle] = "vm.componentMessages['label.adm.table.message.not.results.title']"
-            [messageText]="vm.componentMessages['label.adm.table.message.not.results.text']">
+            [messageTitle] = "getTraductMessage('label.adm.table.message.not.results.title')"
+            [messageText] = "getTraductMessage('label.adm.table.message.not.results.text')"
+            >
           </anexo-hn-message>
 
           <!-- Error -->
-          <anexo-hn-message *ngIf="vm.error"
+          <anexo-hn-message *ngIf="admListService.error"
             [severity] = "'error'"
-            [messageTitle] = "vm.componentMessages['message.error.text.generic']">
+            [messageTitle] = "getTraductMessage('message.error.text.generic')">
           </anexo-hn-message>
         </td>
     </tr>
