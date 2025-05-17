@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IConceptMapPagDAOService } from '../../../../../@oh/hncat-services/build/service/dao/concept-map-pag-dao.interface';
 
 @Component({
   selector: 'hn-button-component',
@@ -12,8 +13,11 @@ export class HnButtonComponent implements OnInit {
    @Input() label: string | undefined;
    @Input() type: string | undefined;
    @Input() mainButton: boolean | undefined;
+   @Input() tooltip: string | undefined;
+   @Input() icon: any | undefined;
+   @Input() disabled: boolean | undefined;
 
-   tooltip: string = '';
+   //tooltip: string = '';
 
   constructor() { }
 

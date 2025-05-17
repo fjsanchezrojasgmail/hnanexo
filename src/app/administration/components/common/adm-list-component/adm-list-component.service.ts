@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { State } from '../../../beans/state.bean';
 import { ComponentMessages } from '../../../../bean/i18n-bean';
+import { GenericRS } from '../../../beans/genericRS.bean';
+import { AdmGenericHnAnexoDAOService } from '../../../../service/dao/adm-generic-hnanexo-dao.service'
+
 
 
 
@@ -9,16 +12,76 @@ export class AdmListComponentService {
 
   public componentMessages: ComponentMessages = ComponentMessages.es;
   url: string | undefined;
-  listing: any[] = [];
-  types: State[] = [];
-  error: boolean = false;
 
 
-  constructor() { }
 
-  initComponent(){}
+
+  public listing: Array<GenericRS> = new Array(); // Datos del listado
+  public error: boolean = false; // Booleano que nos dice si existe o no algún error
+  public types: Array<State> = new Array(); // Listado de tipos para el combo
+
+
+  constructor(private daoAdmGeneric: AdmGenericHnAnexoDAOService) { }
+
+   /** Método de inicialización del componente */
+  initComponent(){
+     // Nos traemos el listado de todos los grupos
+     const item = new GenericRS();
+     this.searchItems(item);
+
+     // Recuperamos el listado de tipos
+     this.checkTypes();
+  }
+
+   /**
+  * Método que devuelve la lista de grupos
+  */
+
+  searchItems(data: GenericRS) {
+
+    this.daoAdmGeneric.searchItems(this.url!, data).subscribe((items: GenericRS[]) => {
+
+     // Si la petición es correcta, seteamos el error a false
+     this.error =  false;
+
+     // 1º Reseteamos la lista
+     this.listing = [];
+
+     // 2º Miramos que la consulta nos haya traido resultados
+     if (items) {
+
+       // 3º Si nos ha traido resultados recorremos la lista y la añadimos a nuestra lista local ya tipada
+       items.forEach((data: GenericRS) => {
+
+         const generic = new GenericRS();
+         generic.code = data.code;
+         generic.description = data.description;
+         generic.typeCatalog = data.typeCatalog;
+         generic.state = data.state;
+         generic.typeProduct = data.typeProduct;
+         //group.subgroups = item.subgroups;
+         generic.conTipo = data.conTipo;
+
+         this.listing.push(generic);
+       });
+     }
+   }, error => {
+     this.error = true;
+     console.error(error);
+   });
+
+
+
+
+ }
+  checkTypes() {
+
+  }
 
 }
+
+
+
 
 
 /*

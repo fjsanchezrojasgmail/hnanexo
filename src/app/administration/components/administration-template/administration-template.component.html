@@ -1,3 +1,23 @@
-<p>
+<!--p>
   administration-template works!
-</p>
+</p-->
+
+<div class="hn-table-selection" id="group-list">
+
+  <p-table #dt
+  [columns]="cols"
+  [value]="admListService.listing"
+  [paginator]="true"
+  [rows]="paginationTable"
+  paginatorPosition="top"
+  [totalRecords]="admListService.listing.length"
+  [scrollable]="true"
+  class="hn-table-scroll hn-full-height-split-button hn-paginator-top
+  hn-table-without-button hn-without-last-update hn-without-refresh
+  hn-table-without-border hn-table-font-12 hn-table-filter hn-wide hn-row-datatable-40
+  hn-table-selection"
+  [ngClass]="{'no-paginator': admListService.listing.length <= 0}">
+
+</p-table>
+
+</div>

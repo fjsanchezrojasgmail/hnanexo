@@ -4,12 +4,15 @@ import { ElementRef, EventEmitter,
 import { HnNgmodel } from '../model/hn-ngmodel';
 import { HnButtonComponent } from '../button/hn-button-component.component';
 import { FormsModule, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { HnLabelComponent } from '../label/hn-label.component';
+import { TooltipModule } from 'primeng/tooltip';
 
 
 @Component({
   selector: 'hn-input-text-component',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,CommonModule,HnButtonComponent,HnLabelComponent, TooltipModule],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -23,6 +26,38 @@ import { FormsModule, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/f
 export class HnInputTextComponent implements OnInit,ControlValueAccessor {
 
   @Input() icon: string | null | undefined;
+
+  label: string | undefined;
+  labelBold: string | undefined;
+  infoMessage: string | undefined;
+  errorMessage: string | undefined;
+  messageError: string | undefined;
+  required: boolean = false;
+  iconLabel: string | undefined;
+  disabled: boolean = false;
+  readonly: boolean = false;
+  tooltip: string | undefined;
+  value: string | undefined;
+  maxLength: number | undefined;
+
+  ttTooltip: string | undefined;
+  ttPosition: string = 'right' ;
+
+  inputNumberIE: boolean = false;
+  iconButtonRight: boolean = false;
+  labelButtonRight: string | undefined;
+  disabledButtonRight: boolean = false;
+  tooltipButtonRight: string | undefined;
+
+  type: any;
+  step: any;
+  max: number = 10;
+  min: number = 1;
+  autocomplete: any;
+  ttEscape: unknown;
+  ttDisabled: boolean = false;
+  mainButton: boolean | undefined;
+  placeHolder: string | undefined;
 
   constructor() { }
 
@@ -41,6 +76,38 @@ export class HnInputTextComponent implements OnInit,ControlValueAccessor {
   }
 
   ngOnInit() {
+  }
+
+  add(){}
+
+  reduce(){}
+
+  focus(){}
+
+  blur(){}
+
+  keypress(event$: KeyboardEvent){
+
+  }
+
+  keyup(event$: KeyboardEvent){
+
+  }
+
+  onChange(event$: any){
+
+  }
+
+  onPaste(event$: ClipboardEvent){
+
+  }
+
+  onInput(event$: Event){
+
+  }
+
+  emitOnClickButtonRight(){
+
   }
 
 }
