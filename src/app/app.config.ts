@@ -20,6 +20,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { TooltipModule } from 'primeng/tooltip';
 import { AdministrationVmService } from './administration/administration.vm.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Función para cargar los archivos de traducción
 export function HttpLoaderFactory(http: HttpClient) {
@@ -39,6 +40,7 @@ export const appConfig: ApplicationConfig = {
         },
       }),
       BrowserModule,
+      BrowserAnimationsModule,
       CommonModule,
       TooltipModule
     ),

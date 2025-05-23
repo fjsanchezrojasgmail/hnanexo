@@ -1,0 +1,61 @@
+<div #comboComponent style="position:relative" class="{{classWidthIco+' '+((showIconOnlyTop)?'showIconOnlyTop':'')+' '+((showItemIcon&&!selectedItemIco)?'no-icon-selected':'')}}">
+  <hn-label-component [label]="label" [labelBold]="labelBold" [infoMessage]="infoMessage" [errorMessage]="errorMessage" [messageError]="messageError"
+      [required]="required" [icon]="iconLabel"
+      [warnMessage]="warnMessage"
+      ></hn-label-component>
+  <div pTooltip="{{ttTooltip}}" tooltipPosition="{{ttPosition}}" [escape]="ttEscape" [tooltipDisabled]="ttDisabled">
+      <div *ngIf="showItemIcon" class="{{label ? 'hn-combo-selected-ico-with-label' : 'hn-combo-selected-ico'}} hn-combo-ico {{selectedItemIco}}" title="{{selectedItemTooltip}}"></div>
+      <p-dropdown #dropdownPNG [options]="options" [showClear]="false" [group]="groupPrimeng"
+      [disabled]="disabled" [(ngModel)]="value" class="{{class}}" styleClass="hn-combo-component-dropdown {{styleClass}}"
+          [filter]="filter" [filterBy]="filterBy" [resetFilterOnHide]="resetFilterOnHide" [emptyFilterMessage]="emptyFilterMessage" (onChange)="change($event)" [panelStyleClass]="panelStyleClass"
+          [placeholder]="placeholder" [appendTo]="appendTo" (click)="emitFirstDropDownEvent()">
+          <ng-container *ngIf="!groupPrimeng && options && options[0] && !options[0].label">
+              <ng-template let-group pTemplate="itemTemplate">
+                  <div class="group-title" title = "{{group.title}}">
+                      {{group.title}}
+                  </div>
+                  <ul class="combo-group">
+                      <li *ngFor="let option of group.elems" (click)="onItemComboSelected(option)" [ngClass]="{'ui-state-highlight': selectedOption && selectedOption.value == option.value}">
+                          <span class="{{option.extra}}" title="{{option.label}}">{{option.label}}</span>
+                          <div class="desc" *ngIf="showLargeLabel">{{option.largeLabel}}</div>
+                      </li>
+                  </ul>
+              </ng-template>
+          </ng-container>
+          <ng-container *ngIf="groupPrimeng">
+              <!-- Tooltip para el elemento seleccionado -->
+              <ng-template let-group pTemplate="selectedItem">
+                  <span title="{{group.label}}">{{group.label}}</span>
+              </ng-template>
+              <!-- Tooltip para el agrupador -->
+              <ng-template let-group pTemplate="group">
+                  <div class="group-title" title="{{group.label}}">{{group.label}}</div>
+              </ng-template>
+              <!-- Tooltip para cada opción del combo -->
+              <ng-template let-group pTemplate="groupTemplate">
+                  <span title="{{group.label}}">{{group.label}}</span>
+              </ng-template>
+          </ng-container>
+          <ng-container *ngIf="!grouped && !groupPrimeng && !customTemplate">
+              <ng-template let-item pTemplate="selectedItem">
+                      <span class="{{item.extra}}" title="{{item.label}}">{{item.label}}</span>
+              </ng-template>
+              <ng-template let-item pTemplate="item">
+                  <span *ngIf="!showItemIcon && classI" class="{{(item.value)?classI:''}}"></span>
+                  <div *ngIf="showItemIcon" class="hn-combo-ico {{item.icon}}"></div>
+                  <span class="{{item.extra}}" title="{{item.label}}">{{item.label}}</span>
+                  <div class="desc" *ngIf="showLargeLabel">
+                    <span class ="desc">{{item.largeLabel}}</span>
+                  </div>
+              </ng-template>
+          </ng-container>
+          <ng-container *ngIf="!grouped && !groupPrimeng && customTemplate">
+              <ng-template let-item [pTemplate]="template.name" *ngFor="let template of templates" >
+                  <ng-template *ngTemplateOutlet="template.template; context: { $implicit: item }"></ng-template>
+              </ng-template>
+          </ng-container>
+      </p-dropdown>
+  </div>
+  <span *ngIf="classILabel" class="{{classILabel}}"></span>
+<div>
+

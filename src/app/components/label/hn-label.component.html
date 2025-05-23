@@ -1,3 +1,8 @@
-<p>
-  label works!
-</p>
+<label *ngIf="label || icon" class="divided{{count}} {{class}}">
+  <span *ngIf="icon" class="{{icon}}"></span>
+  <hn-bubble-component *ngIf="messageError || errorMessage" [type]="'error'" [messageError]="messageError" [errorMessage]="errorMessage"></hn-bubble-component>
+  <hn-bubble-component *ngIf="warnMessage" [type]="'warn'" [warnMessage]="warnMessage"></hn-bubble-component>
+  <span *ngIf="labelBold" class="hn-bold" title="{{label}}">{{label}}</span>
+  <span *ngIf="!labelBold" title="{{label}}">{{label}}</span>
+  <hn-bubble-component [type]="'info'" [infoMessage]="infoMessage"></hn-bubble-component>
+</label>

@@ -1,0 +1,19 @@
+  <!--ERROR-->
+  <div *ngIf="messageError && !errorMessage" class="bubble-error">
+    <span pTooltip="{{messageError}}" [escape]="false" tooltipPosition="top" tooltipStyleClass="hn-fixPosition" class="iconerror" #bubbleiconError></span>
+  </div>
+
+  <!--ERROR SIN SUBMIT-->
+  <div *ngIf="errorMessage && !messageError" class="bubble-error">
+    <span pTooltip="{{errorMessage}}" [escape]="false" tooltipPosition="top" tooltipStyleClass="hn-fixPosition" class="iconerrornosubmit" #bubbleiconErrorNoSubmit></span>
+  </div>
+
+  <!--INFO-->
+  <div *ngIf="infoMessage" class="bubble-info">
+    <span pTooltip="{{infoMessage}}" [escape]="false" tooltipPosition="top" tooltipStyleClass="hn-fixPosition" class="iconinfo" #bubbleiconInfo></span>
+  </div>
+
+  <!--WARNING-->
+  <div *ngIf="warnMessage" class="bubble-warn">
+    <span pTooltip="{{warnMessage}}" [escape]="false" tooltipPosition="top" tooltipStyleClass="hn-fixPosition" class="iconwarn" #bubbleiconInfo></span>
+  </div>

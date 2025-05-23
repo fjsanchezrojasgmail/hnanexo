@@ -104,8 +104,8 @@
         <!-- En el caso de que sea la columna state mostramos el componente switch -->
         <td *ngSwitchCase="'state'" class="hn-width-column-status" (click)="onActionDetail(rowData)">
           <hn-switch-component
-            labelOn = "getTraduction(admListService.componentMessages,'label.adm.table.state.active')"
-            labelOff = "getTraduction(admListService.componentMessages['label.adm.table.state.pasive')"
+            labelOn = "getTraductMessage('label.adm.table.state.active')"
+            labelOff = "getTraductMessage('label.adm.table.state.pasive')"
             [(ngModel)] = "rowData[col.field]"
             [disabled]="true">
           </hn-switch-component>
@@ -113,14 +113,14 @@
 
         <!-- Acciones -->
         <td *ngSwitchCase="'actions'" class="hn-width-column-action cursor-default">
-          <hn-split-button-component tooltip="getTraduction(admListService.componentMessages,'label.adm.table.more.actions')">
+          <hn-split-button-component tooltip="getTraductMessage('label.adm.table.more.actions')">
 
             <!-- Botón de consultar -->
-            <hn-item-split-button-component  [default]="true" label="getTraduction(admListService.componentMessages,'label.actions.detail')" classIcono="ui-hn-icon icon-view" (action)="onActionDetail(rowData)">
+            <hn-item-split-button-component  [default]="true" label="getTraductMessage('label.actions.detail')" classIcono="ui-hn-icon icon-view" (action)="onActionDetail(rowData)">
             </hn-item-split-button-component>
 
             <!-- Botón de modificar -->
-            <hn-item-split-button-component label="getTraduction(admListService.componentMessages,'label.actions.edit')" classIcono="ui-hn-icon icon-adjustable-wrench" (action)="onActionEdit(rowData)">
+            <hn-item-split-button-component label="getTraductMessage('label.actions.edit')" classIcono="ui-hn-icon icon-adjustable-wrench" (action)="onActionEdit(rowData)">
             </hn-item-split-button-component>
           </hn-split-button-component>
         </td>
@@ -141,8 +141,8 @@
         </span>
 
           <!-- Botón nuevo grupo -->
-          <hn-button-component class="hn-button-text-bold" tooltip="getTraduction(admListService.componentMessages,'label.button.create.group')"
-             type="button" [mainButton]="true" label="getTraduction(admListService.componentMessages,'label.button.create.group')"
+          <hn-button-component class="hn-button-text-bold" tooltip="{{ getTraductMessage('label.button.create.item') }}"
+             type="button" [mainButton]="true" label="{{ getTraductMessage('label.button.create.item') }}"
             icon="ui-hn-icon icon-add" (click)="openCreateDetail()">
       </hn-button-component>
     </div>

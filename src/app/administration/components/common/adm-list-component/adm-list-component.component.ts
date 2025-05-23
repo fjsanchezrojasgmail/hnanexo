@@ -1,4 +1,4 @@
-import { AdmUtil } from './../../../../../../../hnanexo-components/ts/hnanexo-components/util/adm-util';
+
 
 import { Component, OnInit, ViewEncapsulation, Input, ViewChild, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { AdmListComponentService } from './adm-list-component.service';
@@ -18,6 +18,7 @@ import { HnSplitButtonComponent } from '../../../../components/split-button/spli
 import { HnItemSplitButtonComponent } from '../../../../components/item-split-button/item-split-button.component';
 import { AnexoHNHeaderComponent } from '../../../../components/header/anexo-hn-header-component';
 import { AnexoHnMessageComponent } from '../../../../components/anexo-message/anexo-message.component';
+import { AdmUtil } from '../../../../util/adm-util';
 
 export type tableCols = {
 
@@ -76,19 +77,21 @@ export class AdmListComponentComponent implements OnInit,OnChanges {
     this.initUrls(); // Inicializamos la urls
     this.admListService.initComponent(); // Nos traemos los catálogos
 
+    console.log("Listing: ", this.admListService.listing);
+
     this.admUtil = AdmUtil;
 
     this.cols = [
-      { field: 'code', header: this.getTraduction(ComponentMessages.es,'label.adm.table.catalog.cod') },
-      { field: 'description', header: this.getTraduction(ComponentMessages.es,'label.adm.table.description') },
-      { field: 'typeProduct', header: this.getTraduction(ComponentMessages.es,'label.adm.table.type') },
-      { field: 'state', header: this.getTraduction(ComponentMessages.es,'label.adm.table.state') },
-      { field: 'actions', header: this.getTraduction(ComponentMessages.es,'label.adm.table.actions') },
+      { field: 'code', header: this.getTraductMessage('label.adm.table.catalog.cod') },
+      { field: 'description', header: this.getTraductMessage('label.adm.table.description') },
+      { field: 'typeProduct', header: this.getTraductMessage('label.adm.table.type') },
+      { field: 'state', header: this.getTraductMessage('label.adm.table.state') },
+      { field: 'actions', header: this.getTraductMessage('label.adm.table.actions') },
     ];
 
     // Rellenamos los valores del combo de lateralidad con los valores del listado de constantes
      ListsDropdownAnexo.VALUES_STATES.forEach(item => {
-      this.states.push({ label: this.getTraduction(ComponentMessages.es,item.label), value: item.value });
+      this.states.push({ label: this.getTraductMessage(item.label), value: item.value });
     });
   }
 
@@ -172,15 +175,15 @@ export class AdmListComponentComponent implements OnInit,OnChanges {
   }
 
   getTraductMessage(path: string): string {
-    return (ComponentMessages.es as { [key: string]: string })[path] || path;
+    return (ComponentMessages.es as Record<string, string>)[path] ?? path;
   }
 
   getTypeProductLabel(code: string): string {
-    return AdmUtil.getLabelOfValueInCombo(code, this.admListService.types);
+    return AdmUtil.getLabelOfValueInStateCombo(code, this.admListService.types);
   }
 
   getElementsPerPages(dt: Table, textOf: string): string {
-    const traduction = this.getTraduction(ComponentMessages.es,textOf)
+    const traduction = this.getTraductMessage(textOf)
     return AdmUtil.elementsPerPages(dt,traduction, this.paginationTable!);
   }
 

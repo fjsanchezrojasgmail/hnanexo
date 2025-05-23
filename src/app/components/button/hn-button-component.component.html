@@ -1,3 +1,9 @@
-<p>
-  hn-button-component works!
-</p>
+<button #tooltipButton [type]="type" [disabled]="disabled" (click)="click()" title='{{tooltip}}'
+  class="{{mainButton ? 'hn-main-button' : 'hn-generic-button'}} {{shape}} positionLabel-{{positionLabel}} {{disabled ? 'ui-state-disabled' : ''}}
+        ui-button ui-widget ui-state-default ui-corner-all {{elements}}
+        {{icon2 ? 'two-icons' : ''}} {{classButton}}">
+  <span *ngIf="showIconLeft" class="ui-button-icon-left ui-c fa fa-fw {{icon}}"></span>
+  <span class="ui-button-text ui-c">{{label ? label : "&nbsp;"}}</span>
+  <span *ngIf="showIconRight" class="ui-button-icon-right ui-c fa fa-fw {{icon}}"></span>
+  <span *ngIf="showIconAndRight" class="ui-button-text-icon-right padding-second-icon ui-button-icon-right ui-c fa fa-fw {{icon2}}"></span>
+</button>

@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { AdmListComponentService } from '../common/adm-list-component/adm-list-component.service';
-import { tableCols } from '../common/adm-list-component/adm-list-component.component';
+import { tableCols, AdmListComponentComponent } from '../common/adm-list-component/adm-list-component.component';
 import { State } from '../../beans/state.bean';
-import { AdmUtil } from '../../../../../../hnanexo-components/ts/hnanexo-components/util/adm-util';
+//import { AdmUtil } from '../../../../../../hnanexo-components/ts/hnanexo-components/util/adm-util';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-administration-template',
   standalone: true,
-  imports: [ FormsModule,
-      CommonModule,TableModule],
+  imports: [FormsModule,
+    CommonModule, TableModule, AdmListComponentComponent],
   templateUrl: './administration-template.component.html',
   styleUrls: ['./administration-template.component.css']
 })

@@ -21,13 +21,15 @@ export class AdmListComponentService {
   public types: Array<State> = new Array(); // Listado de tipos para el combo
 
 
-  constructor(private daoAdmGeneric: AdmGenericHnAnexoDAOService) { }
+  constructor(private daoAdmGeneric: AdmGenericHnAnexoDAOService) {  }
 
    /** Método de inicialización del componente */
   initComponent(){
      // Nos traemos el listado de todos los grupos
      const item = new GenericRS();
      this.searchItems(item);
+
+     this.listing = this.mockGenericRS;
 
      // Recuperamos el listado de tipos
      this.checkTypes();
@@ -77,6 +79,44 @@ export class AdmListComponentService {
   checkTypes() {
 
   }
+
+
+
+  mockGenericRS: GenericRS[] = [
+    {
+      'code': 'AXZ',
+      'description': 'DescriptionAXZ',
+      'typeCatalog': 'catalog-AXZ',
+      'state': true,
+      'typeProduct': 'product-AXZ',
+      'conTipo': true,
+    },
+    {
+      'code': 'RTM',
+      'description': 'DescriptionRTM',
+      'typeCatalog': 'catalog-RTM',
+      'state': true,
+      'typeProduct': 'product-RTM',
+      'conTipo': true,
+    },
+    {
+      'code': 'YTE',
+      'description': 'DescriptionYTE',
+      'typeCatalog': 'catalog-YTE',
+      'state': true,
+      'typeProduct': 'product-YTE',
+      'conTipo': true,
+    },
+    {
+      'code': 'PQA',
+      'description': 'DescriptionPQA',
+      'typeCatalog': 'catalog-PQA',
+      'state': true,
+      'typeProduct': 'product-PQA',
+      'conTipo': true,
+    },
+
+  ];
 
 }
 

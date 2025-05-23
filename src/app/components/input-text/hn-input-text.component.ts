@@ -63,16 +63,16 @@ export class HnInputTextComponent implements OnInit,ControlValueAccessor {
 
 
   writeValue(obj: any): void {
-    throw new Error('Method not implemented.');
+    this.value = obj;
   }
   registerOnChange(fn: any): void {
-    throw new Error('Method not implemented.');
+    console.log(fn);
   }
   registerOnTouched(fn: any): void {
-    throw new Error('Method not implemented.');
+    console.log(fn);
   }
   setDisabledState?(isDisabled: boolean): void {
-    throw new Error('Method not implemented.');
+    this.disabled = isDisabled;
   }
 
   ngOnInit() {
