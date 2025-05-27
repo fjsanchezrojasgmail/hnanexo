@@ -1,3 +1,32 @@
-<p>
-  split-button works!
-</p>
+<div #buttonContainer class="hn-split-button-container {{backgroundClass}}" [ngClass]="{'hn-no-default-button' : !showDefaultButton, 'notIcon' : notIcon}" ngCLass *ngIf="options && options.length > 0">
+  <div *ngIf="showDefaultButton" title='{{defaultButton.label}}' class="{{iconMainButton ? 'display-flex iconAndText ' + classI : classI}}" (click)="executeDefaultOption($event)" #iconDefaultAction>
+      <span *ngIf="iconMainButton" class="hn-split-button-ico {{iconMainButton}}"></span>
+      <label class="split-button-only-text" *ngIf="notIcon">{{defaultButton.label}}</label>
+  </div>
+  <span #iconMoreActions title='{{tooltip}}' class="hn-split-button-icono-dropdown" [ngClass]="dropDownIconClass" (click)="showHideOptions($event)"></span>
+
+  <div #optionsWrapper class="hn-split-button-wrapper" *ngIf="!flgGroups">
+    <ul>
+      <li *ngFor="let item of options" (click)="executeOption($event,item)">
+        <hn-item-split-button-component [classIcono]="item.classIcono" [default]="item.default"
+          [disabled]="item.disabled" [label]="item.label" (action)="item.execute()"
+          [ngClass]="{'icon-display-none': hiddenIcon}">
+        </hn-item-split-button-component>
+      </li>
+    </ul>
+  </div>
+  <div #optionsWrapper class="hn-split-button-wrapper" *ngIf="flgGroups">
+    <ul>
+      <div *ngFor="let group of groups">
+        <div *ngFor="let item of options">
+          <li (click)="executeOption($event,item)" *ngIf="item.group === group">
+            <hn-item-split-button-component [classIcono]="item.classIcono" [default]="item.default"
+              [disabled]="item.disabled" [label]="item.label" (action)="item.execute()"
+              [ngClass]="{'icon-display-none': hiddenIcon}">
+            </hn-item-split-button-component>
+          </li>
+        </div>
+      </div>
+    </ul>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-<div class="hn-table-selection" id="group-list">
+<div class="hn-table-selection" id="item-list">
   <p-table #dt
   [columns]="cols"
   [value]="admListService.listing"
@@ -122,7 +122,9 @@
             <!-- Botón de modificar -->
             <hn-item-split-button-component label="getTraductMessage('label.actions.edit')" classIcono="ui-hn-icon icon-adjustable-wrench" (action)="onActionEdit(rowData)">
             </hn-item-split-button-component>
+
           </hn-split-button-component>
+
         </td>
 
         <!-- Por defecto mostramos el contenido de la columna -->

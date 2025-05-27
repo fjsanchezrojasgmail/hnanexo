@@ -1,4 +1,4 @@
-<div class="height-100 display-flex">
+<div class="height-100 display-flex base">
   <div (transitionend)="endTransaction()" class="height-100 hn-border-right"
       [ngClass]="{'hn-open-panel': openPanel, 'hn-closed-panel': !openPanel, 'hn-over-content':showOverContent,
        'hn-closed-animation-end':closePanelRetardoAnimacion}">
@@ -32,8 +32,8 @@
       <!-- Dentro del panel colapsable -->
 <div *ngIf="openPanel" class="menu-items">
   <ul class="hn-menu">
-    <li *ngFor="let item of items"
-      class="hn-menu-item" [routerLink]="item.routerLink">
+    <li *ngFor="let item of items; let i = index"
+      class="item" [ngClass]="{ 'active': i === 0 }" [routerLink]="item.routerLink">
       <span class="ui-hn-icon" [ngClass]="item.icon" ></span>
       {{ item.label }}
     </li>

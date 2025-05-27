@@ -19,6 +19,7 @@ import { HnItemSplitButtonComponent } from '../../../../components/item-split-bu
 import { AnexoHNHeaderComponent } from '../../../../components/header/anexo-hn-header-component';
 import { AnexoHnMessageComponent } from '../../../../components/anexo-message/anexo-message.component';
 import { AdmUtil } from '../../../../util/adm-util';
+import { PrimeTemplate } from 'primeng/api';
 
 export type tableCols = {
 
@@ -33,6 +34,7 @@ export type tableCols = {
     FormsModule,
     CommonModule,
     TableModule,
+    PrimeTemplate,
     HnInputTextComponent,
     HnComboComponent,
     HnButtonComponent,
@@ -76,6 +78,7 @@ export class AdmListComponentComponent implements OnInit,OnChanges {
   ngOnInit() {
     this.initUrls(); // Inicializamos la urls
     this.admListService.initComponent(); // Nos traemos los catálogos
+    this.paginationTable = 1;
 
     console.log("Listing: ", this.admListService.listing);
 

@@ -15,12 +15,12 @@ hnanexo-adm-list hn-combo-component
   color: #333;
 }
 
-hnanexo-adm-group-list .hn-split-button-wrapper {
+hnanexo-adm-item-list .hn-split-button-wrapper {
   left: auto!important;
   right: 0px;
 }
 
-hnanexo-adm-group-list .hn-split-button-icono-dropdown{
+hnanexo-adm-item-list .hn-split-button-icono-dropdown{
   line-height: 12px;
 }
 /* Fin de estilos del listado */

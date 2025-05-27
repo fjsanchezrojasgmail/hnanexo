@@ -100,6 +100,31 @@ hn-collapsable .hn-closed-panel .hn-title-panel .hn-button-display {
 
 /** Estilos para los iconos **/
 
+.base {
+  background-color: #343648;
+}
+
+.item {
+  height: 8rem;
+  padding: 0.5rem;
+  padding-top: 20px;
+  border: none;
+  background-color: #343648;
+  margin-left: 8px;
+  cursor: pointer;
+  font-style: normal;
+  font-weight: normal;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.active {
+  margin-left: 0px;
+  border-left: 8px solid rgb(157, 152, 153);
+  background-color: rgb(91, 102, 102);
+}
+
 .hn-menu {
   list-style: none;
   padding: 0;
@@ -126,18 +151,16 @@ hn-collapsable .hn-closed-panel .hn-title-panel .hn-button-display {
 
 .ui-hn-icon {
 
+  margin:auto;
   font-style: normal;
   font-weight: normal;
   font-size: 30px;
-  display: inline-block;
+  display: block;
   text-align: center;
   line-height: 1;
-  vertical-align: middle;
   width: 1em;
   height: 1em;
-  font-size: 16px; /* Ajusta según necesidad */
   color: inherit; /* Hereda el color del texto o puedes fijarlo */
-  margin-right: 8px; /* Espacio a la derecha si va junto a texto */
 }
 
 
