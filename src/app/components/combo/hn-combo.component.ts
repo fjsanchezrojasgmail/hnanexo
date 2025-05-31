@@ -6,7 +6,7 @@ import { DropdownChangeEvent, DropdownModule } from 'primeng/dropdown';
 import { PrimeTemplate, SelectItem } from 'primeng/api';
 import { HnLabelComponent } from '../label/hn-label.component';
 import { TooltipModule } from 'primeng/tooltip';
-import { FormsModule } from '@angular/forms';
+import { ControlValueAccessor, FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './hn-combo.component.html',
   styleUrls: ['./hn-combo.component.css']
 })
-export class HnComboComponent implements OnInit {
+export class HnComboComponent implements OnInit,ControlValueAccessor  {
 
   @Input() options: State[] | undefined;
 
@@ -61,6 +61,18 @@ export class HnComboComponent implements OnInit {
   filterBy: string | undefined;
 
   constructor() { }
+  writeValue(obj: any): void {
+    throw new Error('Method not implemented.');
+  }
+  registerOnChange(fn: any): void {
+    throw new Error('Method not implemented.');
+  }
+  registerOnTouched(fn: any): void {
+    throw new Error('Method not implemented.');
+  }
+  setDisabledState?(isDisabled: boolean): void {
+    throw new Error('Method not implemented.');
+  }
 
   ngOnInit() {
   }

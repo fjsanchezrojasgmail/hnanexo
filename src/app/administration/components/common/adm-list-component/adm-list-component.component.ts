@@ -20,6 +20,7 @@ import { AnexoHNHeaderComponent } from '../../../../components/header/anexo-hn-h
 import { AnexoHnMessageComponent } from '../../../../components/anexo-message/anexo-message.component';
 import { AdmUtil } from '../../../../util/adm-util';
 import { PrimeTemplate } from 'primeng/api';
+import { HnSwitchComponent } from '../../../../components/switch/hn-switch.component';
 
 export type tableCols = {
 
@@ -38,6 +39,7 @@ export type tableCols = {
     HnInputTextComponent,
     HnComboComponent,
     HnButtonComponent,
+    HnSwitchComponent,
     HnSplitButtonComponent,
     HnItemSplitButtonComponent,
     AnexoHnMessageComponent
@@ -93,7 +95,9 @@ export class AdmListComponentComponent implements OnInit,OnChanges {
     ];
 
     // Rellenamos los valores del combo de lateralidad con los valores del listado de constantes
+
      ListsDropdownAnexo.VALUES_STATES.forEach(item => {
+      console.log(item.label, item.value);
       this.states.push({ label: this.getTraductMessage(item.label), value: item.value });
     });
   }

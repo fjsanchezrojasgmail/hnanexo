@@ -1,0 +1,4 @@
+<div class="switch-container" (click)="toggle()" [class.disabled]="disabled">
+  <span>{{ value ? labelOn : labelOff }}</span>
+  <div class="switch" [class.active]="value"></div>
+</div>

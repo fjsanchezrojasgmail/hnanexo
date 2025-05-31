@@ -1,0 +1,20 @@
+.switch-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.switch-container.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.switch {
+  width: 40px;
+  height: 20px;
+  background: grey;
+  margin-left: 10px;
+  border-radius: 10px;
+  position: relative;
+}
+.switch.active {
+  background: green;
+}

@@ -68,6 +68,9 @@ export class ComponentMessages {
         'label.adm.visado': 'Visto Bueno',
         'label.adm.blocking.reason': 'Motivo Bloqueo Cautelar',
         'label.adm.renewal.justification': 'Justificación Renovación',
+        'label.adm.table.all': 'Todos',
+        'label.adm.table.state.active': 'Activos',
+        'label.adm.table.state.pasive': 'Pasivos',
         'label.adm.table.catalog.cod' : 'Código Catálogo',
         'label.adm.table.description': 'Descripcion',
         'label.adm.table.type': 'Tipo',
@@ -132,7 +135,8 @@ export class ComponentMessages {
         'label.error.no.patient.citizen': 'No puede continuar con el proceso de prescripción al no tener el paciente un CIPA asociado. El paciente deberá contactar con su centro de salud para solucionarlo.',
         'label.error.no.valid.cipa.citizen': 'No puede continuar con el proceso de prescripción al no ser válido en CIBELES el CIPA del paciente. El paciente deberá contactar con su centro de salud para solucionarlo.',
         'label.error.create.encounter': 'Ha ocurrido un error a la hora de crear el encuentro del paciente con el profesional. Póngase en contacto con el administrador del sistema.',
-        'label.service.no.find.patient': 'No se ha encontrado al paciente solicitado. Póngase en contacto con el administrador del sistema.'
+        'label.service.no.find.patient': 'No se ha encontrado al paciente solicitado. Póngase en contacto con el administrador del sistema.',
+
       };
 
     static en = {

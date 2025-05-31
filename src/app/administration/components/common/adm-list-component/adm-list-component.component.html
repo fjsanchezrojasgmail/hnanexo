@@ -104,8 +104,8 @@
         <!-- En el caso de que sea la columna state mostramos el componente switch -->
         <td *ngSwitchCase="'state'" class="hn-width-column-status" (click)="onActionDetail(rowData)">
           <hn-switch-component
-            labelOn = "getTraductMessage('label.adm.table.state.active')"
-            labelOff = "getTraductMessage('label.adm.table.state.pasive')"
+            labelOn = "{{ getTraductMessage('label.adm.table.state.active') }}"
+            labelOff = "{{ getTraductMessage('label.adm.table.state.pasive') }}"
             [(ngModel)] = "rowData[col.field]"
             [disabled]="true">
           </hn-switch-component>
